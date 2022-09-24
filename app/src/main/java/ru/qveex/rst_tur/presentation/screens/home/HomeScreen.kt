@@ -8,11 +8,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.hilt.navigation.compose.hiltViewModel
 import ru.qveex.rst_tur.navigation.Screen
 import ru.qveex.rst_tur.presentation.screens.main.SharedViewModel
 
 @Composable
-fun HomeScreen(sharedViewModel: SharedViewModel) {
+fun HomeScreen(
+    sharedViewModel: SharedViewModel,
+    homeViewModel: HomeViewModel = hiltViewModel()
+) {
     sharedViewModel.changeScreenTitle(Screen.Home.title)
     Box(
         modifier = Modifier

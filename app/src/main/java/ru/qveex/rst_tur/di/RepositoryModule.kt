@@ -19,6 +19,7 @@ object RepositoryModule {
             bookingInteractor = BookingInteractor(repository),
             chatsInteractor = ChatsInteractor(repository),
             homeInteractor = HomeInteractor(repository),
-            profileInteractor = ProfileInteractor(repository)
+            profileInteractor = ProfileInteractor(repository),
+            mapInteractor = MapInteractor(repository)
         )
 }
