@@ -9,5 +9,9 @@ class Repository @Inject constructor(
     suspend fun getMainObjects(id: Int) = remote.getMainObjects(id = id)
 
 
-    suspend fun getObject(id: Int, type: String) = remote.getObject(id = id, type = type)
+    suspend fun getFuns(id: Int, type: String) = remote.getFuns(id = id, type = type)
+
+    suspend fun getRooms(id: Int) = remote.getRooms(id = id)
+
+    suspend fun getTours(id: Int) = remote.getTours(id = id)
 }
