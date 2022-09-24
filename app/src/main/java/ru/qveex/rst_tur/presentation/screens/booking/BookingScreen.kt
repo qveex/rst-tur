@@ -8,9 +8,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import ru.qveex.rst_tur.navigation.Screen
+import ru.qveex.rst_tur.presentation.screens.main.SharedViewModel
 
 @Composable
-fun BookingScreen() {
+fun BookingScreen(sharedViewModel: SharedViewModel) {
+    sharedViewModel.changeScreenTitle(Screen.Booking.title)
     Box(
         modifier = Modifier
             .fillMaxSize()

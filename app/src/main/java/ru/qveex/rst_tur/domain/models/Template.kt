@@ -1,4 +1,4 @@
-package ru.qveex.rst_tur.models
+package ru.qveex.rst_tur.domain.models
 
 import kotlinx.serialization.Serializable
 

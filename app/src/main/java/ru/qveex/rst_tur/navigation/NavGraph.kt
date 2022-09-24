@@ -15,7 +15,7 @@ import ru.qveex.rst_tur.presentation.screens.profile.ProfileScreen
 @Composable
 fun SetupNavGraph(
     navController: NavHostController,
-    sharedViewModel: SharedViewModel
+    sharedViewModel: SharedViewModel,
 ) {
     NavHost(
         navController = navController,
@@ -25,32 +25,32 @@ fun SetupNavGraph(
         composable(
             route = Screen.Home.route
         ) {
-            HomeScreen(sharedViewModel)
+            HomeScreen(sharedViewModel = sharedViewModel)
         }
         composable(
             route = Screen.Map.route
         ) {
-            MapScreen()
+            MapScreen(sharedViewModel = sharedViewModel)
         }
         composable(
             route = Screen.Booking.route
         ) {
-            BookingScreen()
+            BookingScreen(sharedViewModel = sharedViewModel)
         }
         composable(
             route = Screen.Chats.route
         ) {
-            ChatsScreen()
+            ChatsScreen(sharedViewModel = sharedViewModel)
         }
         composable(
             route = Screen.Profile.route
         ) {
-            ProfileScreen(sharedViewModel)
+            ProfileScreen(sharedViewModel = sharedViewModel)
         }
         composable(
             route = Screen.Blog.route
         ) {
-            BlogScreen(sharedViewModel)
+            BlogScreen(sharedViewModel = sharedViewModel)
         }
 
     }

@@ -1,10 +1,10 @@
-package ru.qveex.rst_tur.api
+package ru.qveex.rst_tur.data.remote
 
 import retrofit2.http.GET
 import retrofit2.http.Query
-import ru.qveex.rst_tur.models.Data
-import ru.qveex.rst_tur.models.MainObject
-import ru.qveex.rst_tur.models.ResponseApi
+import ru.qveex.rst_tur.domain.models.Data
+import ru.qveex.rst_tur.domain.models.MainObject
+import ru.qveex.rst_tur.domain.models.ResponseApi
 
 interface Api {
 

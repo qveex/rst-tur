@@ -1,4 +1,4 @@
-package ru.qveex.rst_tur.models
+package ru.qveex.rst_tur.domain.models
 
 data class Data(
     val id: Int,
