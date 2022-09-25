@@ -43,6 +43,7 @@ class HomeViewModel @Inject constructor(
         viewModelScope.launch {
             val response = interactor.getFuns(id = 117, type = "food")
             if (response.success) {
+                Log.i("Lists", "foods = ${response.data}")
                 _foods.addAll(response.data)
             } else {
 
@@ -65,6 +66,7 @@ class HomeViewModel @Inject constructor(
         viewModelScope.launch {
             val response = interactor.getRooms(id = 117)
             if (response.success) {
+                Log.i("Lists", "rooms = ${response.data}")
                 _rooms.addAll(response.data)
             } else {
 

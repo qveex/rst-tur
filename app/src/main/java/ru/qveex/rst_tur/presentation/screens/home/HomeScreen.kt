@@ -1,9 +1,9 @@
 package ru.qveex.rst_tur.presentation.screens.home
 
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import ru.qveex.rst_tur.navigation.Screen
@@ -18,9 +18,7 @@ fun HomeScreen(
 ) {
     sharedViewModel.changeScreenTitle(Screen.Home.title)
     Column(
-        modifier = Modifier
-            .fillMaxSize(),
-        horizontalAlignment = Alignment.CenterHorizontally,
+        Modifier.verticalScroll(rememberScrollState())
     ) {
         FoodList(foods = homeViewModel.foods)
         RoomList(rooms = homeViewModel.rooms)
