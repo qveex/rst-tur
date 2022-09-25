@@ -8,6 +8,8 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import ru.qveex.rst_tur.domain.interactors.Interactors
 import ru.qveex.rst_tur.domain.models.Fun
+import ru.qveex.rst_tur.domain.models.Room
+import ru.qveex.rst_tur.domain.models.Tour
 import javax.inject.Inject
 
 @HiltViewModel
@@ -20,18 +22,27 @@ class HomeViewModel @Inject constructor(
     private val _foods = mutableStateListOf<Fun>()
     val foods get() = _foods
 
+    private val _tours = mutableStateListOf<Tour>()
+    val tours get() = _tours
+
+    private val _rooms = mutableStateListOf<Room>()
+    val rooms get() = _rooms
+
+    private val _places = mutableStateListOf<Fun>()
+    val places get() = _places
+
+
     init {
         getFoods()
+        getTours()
+        getRooms()
+        getPlaces()
     }
 
-    fun getFoods() {
+    private fun getFoods() {
         viewModelScope.launch {
             val response = interactor.getFuns(id = 117, type = "food")
-            Log.i("FOODS", "response = $response")
             if (response.success) {
-                response.data.forEach {
-                    Log.i("FOODS", "food = $it")
-                }
                 _foods.addAll(response.data)
             } else {
 
@@ -39,21 +50,36 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    fun getTours() {
+    private fun getTours() {
         viewModelScope.launch {
-            interactor.getTours(id = 117)
+            val response = interactor.getTours(id = 117)
+            if (response.success) {
+                _tours.addAll(response.data)
+            } else {
+
+            }
         }
     }
 
-    fun getRooms() {
+    private fun getRooms() {
         viewModelScope.launch {
-            interactor.getRooms(id = 117)
+            val response = interactor.getRooms(id = 117)
+            if (response.success) {
+                _rooms.addAll(response.data)
+            } else {
+
+            }
         }
     }
 
     fun getPlaces() {
         viewModelScope.launch {
-            interactor.getFuns(id = 117, type = "place")
+            val response = interactor.getFuns(id = 117, type = "place")
+            if (response.success) {
+                _places.addAll(response.data)
+            } else {
+
+            }
         }
     }
 }

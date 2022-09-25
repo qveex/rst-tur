@@ -6,7 +6,7 @@ import kotlinx.serialization.Serializable
 data class Price(
     val factPrice: Int,
     val price: Int,
-    val discount: String?,
+    val discount: Int? = null,
     val currency: String,
     val typePrice: String
 )

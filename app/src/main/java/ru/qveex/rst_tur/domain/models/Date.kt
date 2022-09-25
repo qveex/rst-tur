@@ -5,5 +5,6 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class Date(
     val typeDate: String,
-    val date: String?
+    val date: String? = null,
+    val end: String? = null
 )

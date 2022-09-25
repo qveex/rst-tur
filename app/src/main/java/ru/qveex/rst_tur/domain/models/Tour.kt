@@ -10,7 +10,7 @@ data class Tour(
     val title: String,
     val location: String,
     val date: Date,
-    val duration: TourDuration,
+    val duration: Duration,
     val price: Price,
     val home: Home
 )
