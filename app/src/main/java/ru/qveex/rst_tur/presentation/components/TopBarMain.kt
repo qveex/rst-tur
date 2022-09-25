@@ -9,6 +9,7 @@ import androidx.compose.material.icons.outlined.DarkMode
 import androidx.compose.material.icons.outlined.LightMode
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 
 @Composable
@@ -18,7 +19,7 @@ fun TopBarMain(
     onThemeSwitch: () -> Unit,
 ) {
     TopAppBar(
-        title = { Text(text = title) },
+        title = { Text(text = title, fontWeight = FontWeight.Bold) },
         actions = {
             SwitchThemeButton(isDarkTheme = isDarkTheme) { onThemeSwitch() }
         },
@@ -50,8 +51,6 @@ fun SwitchThemeButton(
                     tint = MaterialTheme.colors.onBackground,
                 )
             }
-
         }
-
     }
 }

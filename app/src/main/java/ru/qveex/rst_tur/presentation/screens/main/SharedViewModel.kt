@@ -4,7 +4,6 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
-import ru.qveex.rst_tur.domain.interactors.Interactors
 import javax.inject.Inject
 
 @HiltViewModel
