@@ -1,10 +1,12 @@
 package ru.qveex.rst_tur.presentation.components
 
 import androidx.compose.animation.Crossfade
+import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.*
 import androidx.compose.material.FloatingActionButtonDefaults.elevation
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.ArrowBack
 import androidx.compose.material.icons.outlined.DarkMode
 import androidx.compose.material.icons.outlined.LightMode
 import androidx.compose.runtime.Composable
@@ -16,10 +18,27 @@ import androidx.compose.ui.unit.dp
 fun TopBarMain(
     isDarkTheme: Boolean,
     title: String,
+    onClickNavIcon: () -> Unit,
     onThemeSwitch: () -> Unit,
 ) {
     TopAppBar(
-        title = { Text(text = title, fontWeight = FontWeight.Bold) },
+        navigationIcon = {
+            IconButton(
+                onClick = { onClickNavIcon() }
+            ) {
+                Icon(
+                    imageVector = Icons.Outlined.ArrowBack,
+                    contentDescription = "Back icon"
+                )
+            }
+        },
+        title = {
+            Text(
+                modifier = Modifier.animateContentSize(),
+                text = title,
+                fontWeight = FontWeight.Bold
+            )
+        },
         actions = {
             SwitchThemeButton(isDarkTheme = isDarkTheme) { onThemeSwitch() }
         },
