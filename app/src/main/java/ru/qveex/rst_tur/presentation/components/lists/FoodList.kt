@@ -1,4 +1,4 @@
-package ru.qveex.rst_tur.presentation.components
+package ru.qveex.rst_tur.presentation.components.lists
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -14,6 +14,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import ru.qveex.rst_tur.domain.models.Fun
+import ru.qveex.rst_tur.presentation.components.list_items.FoodItem
 
 @Composable
 fun FoodList(foods: List<Fun>) {

@@ -1,4 +1,4 @@
-package ru.qveex.rst_tur.presentation.components
+package ru.qveex.rst_tur.presentation.components.list_items
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*

@@ -1,8 +1,11 @@
 package ru.qveex.rst_tur.presentation.screens.main
 
 import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.*
+import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import ru.qveex.rst_tur.navigation.SetupNavGraph
 import ru.qveex.rst_tur.presentation.components.BottomNav
@@ -22,7 +25,6 @@ fun MainScreen(
         }
     }
 
-
     Scaffold(
         topBar = {
              TopBarMain(
@@ -33,6 +35,10 @@ fun MainScreen(
              }
         },
         bottomBar = { BottomNav(navController = navController) },
-        content = { SetupNavGraph(navController = navController, sharedViewModel = sharedViewModel) }
+        content = {
+            Box(modifier = Modifier.padding(it)) {
+                SetupNavGraph(navController = navController, sharedViewModel = sharedViewModel)
+            }
+        }
     )
 }
