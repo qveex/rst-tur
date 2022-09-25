@@ -2,7 +2,6 @@ package ru.qveex.rst_tur.presentation.components
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.MaterialTheme
@@ -23,9 +22,7 @@ fun RoundedButton (
     onClick: () -> Unit
 ) {
     Button(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(vertical = 14.dp),
+        modifier = Modifier.fillMaxWidth(),
         colors = ButtonDefaults.buttonColors(
             backgroundColor = if (isDarkTheme) DarkButtonBackgroung else LightButtonBackgroung,
             contentColor = if (isDarkTheme) DarkButtonContent else LightButtonContent
