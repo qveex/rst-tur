@@ -19,5 +19,6 @@ fun HomeScreen(
         item { FunList(funs = homeViewModel.funs) }
         item { BlogList(blogs = homeViewModel.blogs) }
         item { KidList(kids = homeViewModel.kids) }
+        item { TourList(tours = homeViewModel.tours) }
     }
 }

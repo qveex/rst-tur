@@ -10,7 +10,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
@@ -34,7 +36,6 @@ fun TourItem(tour: Tour) {
             contentScale = ContentScale.Crop,
             contentDescription = "Food photo"
         )
-        val date = ""
         val duration =
             if (tour.duration.hour != null)
                 "${tour.duration.hour} часа"
@@ -42,26 +43,39 @@ fun TourItem(tour: Tour) {
                 "${tour.duration.day} дня ${tour.duration.night} ночи"
 
         Text(
-            text = "${tour.date.date} / ${tour.date}" ,
+            text = "${tour.date.date} / $duration" ,
             fontSize = MaterialTheme.typography.subtitle2.fontSize,
             overflow = TextOverflow.Ellipsis,
-            maxLines = 2,
+            maxLines = 1,
             fontWeight = FontWeight.Normal
         )
         Text(
             modifier = Modifier.padding(top = 4.dp),
             text = tour.title,
-            fontSize = MaterialTheme.typography.body1.fontSize,
-            overflow = TextOverflow.Ellipsis,
-            maxLines = 1,
-            fontWeight = FontWeight.Bold
-        )
-        Text(
-            text = tour.title,
             fontSize = MaterialTheme.typography.subtitle2.fontSize,
             overflow = TextOverflow.Ellipsis,
             maxLines = 2,
             fontWeight = FontWeight.Normal
         )
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.spacedBy(12.dp)
+        ) {
+            Text(
+                text = "${tour.price.price}",
+                style = TextStyle(textDecoration = TextDecoration.LineThrough),
+                fontSize = MaterialTheme.typography.subtitle1.fontSize,
+                overflow = TextOverflow.Ellipsis,
+                maxLines = 1,
+                fontWeight = FontWeight.Normal
+            )
+            Text(
+                text = "${tour.price.price}",
+                fontSize = MaterialTheme.typography.subtitle1.fontSize,
+                overflow = TextOverflow.Ellipsis,
+                maxLines = 1,
+                fontWeight = FontWeight.Bold
+            )
+        }
     }
 }
