@@ -12,6 +12,7 @@ import androidx.compose.material.icons.outlined.LightMode
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 
 @Composable
@@ -36,7 +37,9 @@ fun TopBarMain(
             Text(
                 modifier = Modifier.animateContentSize(),
                 text = title,
-                fontWeight = FontWeight.Bold
+                fontWeight = FontWeight.Bold,
+                overflow = TextOverflow.Ellipsis,
+                maxLines = 1
             )
         },
         actions = {

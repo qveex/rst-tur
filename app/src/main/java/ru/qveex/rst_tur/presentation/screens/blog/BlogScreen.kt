@@ -26,7 +26,7 @@ fun BlogScreen(
     blogViewModel: BlogViewModel = hiltViewModel(),
     blogId: Int
 ) {
-    sharedViewModel.changeScreenTitle(Screen.Blog.title)
+    sharedViewModel.changeScreenTitle(blogViewModel.blog.value?.title ?: "")
     blogViewModel.getBlog(blogId)
 
     Column(
