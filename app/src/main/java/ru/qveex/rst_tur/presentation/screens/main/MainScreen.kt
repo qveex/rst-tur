@@ -23,7 +23,15 @@ fun MainScreen(
     var title by remember { mutableStateOf("") }
     LaunchedEffect(navController) {
         navController.currentBackStackEntryFlow.collect{ backStackEntry ->
-            title = backStackEntry.destination.label.toString()
+            title = when (backStackEntry.destination.route) {
+                Screen.Home.route -> Screen.Home.title
+                Screen.Blog.route -> Screen.Blog.title
+                Screen.Booking.route -> Screen.Booking.title
+                Screen.Chats.route -> Screen.Chats.title
+                Screen.Map.route -> Screen.Map.title
+                Screen.Profile.route -> Screen.Profile.title
+                else -> ""
+            }
         }
     }
 

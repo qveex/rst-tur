@@ -25,3 +25,5 @@ fun String.translateMonth() = when(this.substringAfter('-').substringBefore('-')
     "12" -> "дек"
     else -> ""
 }
+
+fun String.dateConvert() = this.replace('-', '.').substringBefore('T')

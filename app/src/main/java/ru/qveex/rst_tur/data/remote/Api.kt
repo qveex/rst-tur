@@ -28,6 +28,12 @@ interface Api {
         @Query("format") format: String,
     ): ResponseApi<List<Blog>>
 
+    @GET("api/base-app/blog-info")
+    suspend fun getBlog(
+        @Query("id") id: Int,
+        @Query("blog_id") blogId: Int,
+    ): ResponseApi<BlogInfo>
+
     @GET("api/base-app/main")
     suspend fun getMainObjects(@Query("id") id: Int): ResponseApi<MainObject>
 }

@@ -11,11 +11,16 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import ru.qveex.rst_tur.domain.models.Blog
+import ru.qveex.rst_tur.navigation.Screen
 import ru.qveex.rst_tur.presentation.components.list_items.BlogItem
 
 @Composable
-fun BlogList(blogs: List<Blog>) {
+fun BlogList(
+    blogs: List<Blog>,
+    navController: NavController
+) {
     LazyColumn(
         modifier = Modifier.heightIn(min = 0.dp, max = 1000.dp),
         contentPadding = PaddingValues(all = 12.dp),
@@ -29,7 +34,7 @@ fun BlogList(blogs: List<Blog>) {
             )
         }
         items(blogs) { blog ->
-            BlogItem(blog = blog)
+            BlogItem(blog = blog, onBlogClick = { navController.navigate(Screen.Blog.passId(blog.id)) })
         }
     }
 }

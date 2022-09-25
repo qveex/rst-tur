@@ -3,6 +3,7 @@ package ru.qveex.rst_tur.navigation
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.ui.graphics.vector.ImageVector
+import ru.qveex.rst_tur.utils.Constants.BLOG_ARGUMENT_KEY
 
 sealed class Screen(
     val route: String,
@@ -40,8 +41,10 @@ sealed class Screen(
     )
 
     object Blog: Screen(
-        route = "blog",
+        route = "blog/{$BLOG_ARGUMENT_KEY}",
         title = "Блог",
         icon = Icons.Outlined.Close
-    )
+    ) {
+        fun passId(blogId: Int) = "blog/$blogId"
+    }
 }

@@ -57,7 +57,7 @@ class HomeViewModel @Inject constructor(
             val response = interactor.getFuns(id = 117, type = "food")
             if (response.success) {
                 Log.i("HomeViewModel", "foods = ${response.data}")
-                _foods.addAll(response.data)
+                _foods.addAll(response.data.subList(0, 6))
             } else {
 
             }
@@ -68,7 +68,7 @@ class HomeViewModel @Inject constructor(
         viewModelScope.launch {
             val response = interactor.getTours(id = 117)
             if (response.success) {
-                _tours.addAll(response.data)
+                _tours.addAll(response.data.subList(0, 6))
             } else {
 
             }
@@ -80,7 +80,7 @@ class HomeViewModel @Inject constructor(
             val response = interactor.getRooms(id = 117)
             if (response.success) {
                 Log.i("HomeViewModel", "rooms = ${response.data}")
-                _rooms.addAll(response.data)
+                _rooms.addAll(response.data.subList(0, 6))
             } else {
 
             }
@@ -91,7 +91,7 @@ class HomeViewModel @Inject constructor(
         viewModelScope.launch {
             val response = interactor.getFuns(id = 117, type = "place")
             if (response.success) {
-                _places.addAll(response.data)
+                _places.addAll(response.data.subList(0, 6))
             } else {
 
             }
@@ -103,7 +103,7 @@ class HomeViewModel @Inject constructor(
             val response = interactor.getFuns(id = 117, type = "fun")
             if (response.success) {
                 Log.i("HomeViewModel", "funs = ${response.data}")
-                _funs.addAll(response.data)
+                _funs.addAll(response.data.subList(0, 6))
             } else {
 
             }
@@ -115,7 +115,7 @@ class HomeViewModel @Inject constructor(
             val response = interactor.getFuns(id = 117, type = "child")
             if (response.success) {
                 Log.i("HomeViewModel", "kids = ${response.data}")
-                _kids.addAll(response.data)
+                _kids.addAll(response.data.subList(0, 2))
             } else {
 
             }
@@ -127,7 +127,7 @@ class HomeViewModel @Inject constructor(
             val response = interactor.getBlogs(id = 117, format = "card")
             if (response.success) {
                 Log.i("HomeViewModel", "blogs = ${response.data}")
-                _blogs.addAll(response.data)
+                _blogs.addAll(response.data.subList(0, 6))
             } else {
 
             }

@@ -1,6 +1,7 @@
 package ru.qveex.rst_tur.presentation.components.list_items
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.MaterialTheme
@@ -16,9 +17,14 @@ import coil.compose.rememberAsyncImagePainter
 import ru.qveex.rst_tur.domain.models.Blog
 
 @Composable
-fun BlogItem(blog: Blog) {
+fun BlogItem(
+    blog: Blog,
+    onBlogClick: () -> Unit
+) {
     Row(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable { onBlogClick() },
         horizontalArrangement = Arrangement.spacedBy(12.dp)
     ) {
         Image(
@@ -27,7 +33,7 @@ fun BlogItem(blog: Blog) {
                 .clip(RoundedCornerShape(size = 8.dp)),
             painter = rememberAsyncImagePainter(blog.image.sm),
             contentScale = ContentScale.Crop,
-            contentDescription = "Kid fun photo"
+            contentDescription = "Blog photo"
         )
         Column(
             modifier = Modifier.fillMaxWidth(),

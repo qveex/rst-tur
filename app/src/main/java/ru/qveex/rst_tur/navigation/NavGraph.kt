@@ -4,6 +4,8 @@ import androidx.compose.animation.*
 import androidx.compose.animation.core.tween
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
+import androidx.navigation.navArgument
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.composable
 import ru.qveex.rst_tur.presentation.screens.blog.BlogScreen
@@ -13,6 +15,7 @@ import ru.qveex.rst_tur.presentation.screens.home.HomeScreen
 import ru.qveex.rst_tur.presentation.screens.main.SharedViewModel
 import ru.qveex.rst_tur.presentation.screens.map.MapScreen
 import ru.qveex.rst_tur.presentation.screens.profile.ProfileScreen
+import ru.qveex.rst_tur.utils.Constants.BLOG_ARGUMENT_KEY
 import ru.qveex.rst_tur.utils.Constants.INITIAL_OFFSET_X
 import ru.qveex.rst_tur.utils.Constants.SCREEN_TRANSIT_DURATION_MILLIS
 import ru.qveex.rst_tur.utils.Constants.TARGET_OFFSET_X
@@ -33,7 +36,7 @@ fun SetupNavGraph(
             enterTransition = { enterAnim() },
             exitTransition = { exitAnim() },
         ) {
-            HomeScreen(sharedViewModel = sharedViewModel)
+            HomeScreen(sharedViewModel = sharedViewModel, navController = navController)
         }
         composable(
             route = Screen.Map.route,
@@ -66,9 +69,10 @@ fun SetupNavGraph(
         composable(
             route = Screen.Blog.route,
             enterTransition = { enterAnim() },
-            exitTransition = { exitAnim() }
+            exitTransition = { exitAnim() },
+            arguments = listOf(navArgument(BLOG_ARGUMENT_KEY) { type = NavType.IntType })
         ) {
-            BlogScreen(sharedViewModel = sharedViewModel)
+            BlogScreen(sharedViewModel = sharedViewModel, blogId = it.arguments!!.getInt(BLOG_ARGUMENT_KEY))
         }
 
     }
