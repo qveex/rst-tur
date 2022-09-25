@@ -31,11 +31,15 @@ class HomeViewModel @Inject constructor(
     private val _places = mutableStateListOf<Fun>()
     val places get() = _places
 
+    private val _funs = mutableStateListOf<Fun>()
+    val funs get() = _funs
+
 
     init {
         getFoods()
-        getTours()
         getRooms()
+        getFuns()
+        getTours()
         getPlaces()
     }
 
@@ -74,11 +78,23 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    fun getPlaces() {
+    private fun getPlaces() {
         viewModelScope.launch {
             val response = interactor.getFuns(id = 117, type = "place")
             if (response.success) {
                 _places.addAll(response.data)
+            } else {
+
+            }
+        }
+    }
+
+    private fun getFuns() {
+        viewModelScope.launch {
+            val response = interactor.getFuns(id = 117, type = "fun")
+            if (response.success) {
+                Log.i("Lists", "funs = ${response.data}")
+                _funs.addAll(response.data)
             } else {
 
             }

@@ -8,6 +8,7 @@ import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import ru.qveex.rst_tur.navigation.Screen
 import ru.qveex.rst_tur.presentation.components.lists.FoodList
+import ru.qveex.rst_tur.presentation.components.lists.FunList
 import ru.qveex.rst_tur.presentation.components.lists.RoomList
 import ru.qveex.rst_tur.presentation.screens.main.SharedViewModel
 
@@ -22,5 +23,6 @@ fun HomeScreen(
     ) {
         FoodList(foods = homeViewModel.foods)
         RoomList(rooms = homeViewModel.rooms)
+        FunList(funs = homeViewModel.funs)
     }
 }
