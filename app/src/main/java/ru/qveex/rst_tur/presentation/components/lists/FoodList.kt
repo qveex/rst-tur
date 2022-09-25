@@ -18,7 +18,7 @@ import ru.qveex.rst_tur.presentation.components.list_items.FoodItem
 fun FoodList(foods: List<Fun>) {
     LazyVerticalGrid(
         modifier = Modifier
-            .size(1000.dp)
+            .heightIn(min = 0.dp, max = 1000.dp)
             .padding(15.dp),
         columns = GridCells.Fixed(2),
         verticalArrangement = Arrangement.spacedBy(12.dp),

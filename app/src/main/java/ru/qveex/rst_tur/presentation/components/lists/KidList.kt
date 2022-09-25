@@ -8,11 +8,11 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import ru.qveex.rst_tur.domain.models.Room
-import ru.qveex.rst_tur.presentation.components.list_items.RoomItem
+import ru.qveex.rst_tur.domain.models.Fun
+import ru.qveex.rst_tur.presentation.components.list_items.KidItem
 
 @Composable
-fun RoomList(rooms: List<Room>) {
+fun KidList(kids: List<Fun>) {
     LazyColumn(
         modifier = Modifier.heightIn(min = 0.dp, max = 1000.dp),
         contentPadding = PaddingValues(all = 12.dp),
@@ -21,12 +21,12 @@ fun RoomList(rooms: List<Room>) {
         item {
             Text(
                 modifier = Modifier.padding(vertical = 14.dp),
-                text = "Питание",
+                text = "Для детей",
                 fontSize = MaterialTheme.typography.h5.fontSize
             )
         }
-        items(rooms) { room ->
-            RoomItem(room = room)
+        items(kids) { kid ->
+            KidItem(kid = kid)
         }
     }
 }

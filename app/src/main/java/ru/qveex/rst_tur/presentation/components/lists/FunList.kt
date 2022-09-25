@@ -22,7 +22,9 @@ fun FunList(funs: List<Fun>) {
     var expendedState by remember { mutableStateOf(false) }
 
     Column(
-        modifier = Modifier.padding(start = 15.dp)
+        modifier = Modifier
+            .padding(start = 15.dp)
+            .heightIn(min = 0.dp, max = 1000.dp)
     ) {
         Row(
             modifier = Modifier
