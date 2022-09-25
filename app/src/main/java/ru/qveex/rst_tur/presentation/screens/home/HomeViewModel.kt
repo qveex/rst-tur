@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import ru.qveex.rst_tur.domain.interactors.Interactors
+import ru.qveex.rst_tur.domain.models.Blog
 import ru.qveex.rst_tur.domain.models.Fun
 import ru.qveex.rst_tur.domain.models.Room
 import ru.qveex.rst_tur.domain.models.Tour
@@ -34,6 +35,12 @@ class HomeViewModel @Inject constructor(
     private val _funs = mutableStateListOf<Fun>()
     val funs get() = _funs
 
+    private val _kids = mutableStateListOf<Fun>()
+    val kids get() = _kids
+
+    private val _blogs = mutableStateListOf<Blog>()
+    val blogs get() = _blogs
+
 
     init {
         getFoods()
@@ -41,6 +48,8 @@ class HomeViewModel @Inject constructor(
         getFuns()
         getTours()
         getPlaces()
+        getKids()
+        getBlogs()
     }
 
     private fun getFoods() {
@@ -95,6 +104,30 @@ class HomeViewModel @Inject constructor(
             if (response.success) {
                 Log.i("HomeViewModel", "funs = ${response.data}")
                 _funs.addAll(response.data)
+            } else {
+
+            }
+        }
+    }
+
+    private fun getKids() {
+        viewModelScope.launch {
+            val response = interactor.getFuns(id = 117, type = "child")
+            if (response.success) {
+                Log.i("HomeViewModel", "kids = ${response.data}")
+                _kids.addAll(response.data)
+            } else {
+
+            }
+        }
+    }
+
+    private fun getBlogs() {
+        viewModelScope.launch {
+            val response = interactor.getBlogs(id = 117, format = "card")
+            if (response.success) {
+                Log.i("HomeViewModel", "blogs = ${response.data}")
+                _blogs.addAll(response.data)
             } else {
 
             }

@@ -22,6 +22,12 @@ interface Api {
         @Query("id") id: Int,
     ): ResponseApi<List<Tour>>
 
+    @GET("api/base-app/blog")
+    suspend fun getBlogs(
+        @Query("id") id: Int,
+        @Query("format") format: String,
+    ): ResponseApi<List<Blog>>
+
     @GET("api/base-app/main")
     suspend fun getMainObjects(@Query("id") id: Int): ResponseApi<MainObject>
 }

@@ -18,4 +18,7 @@ class RemoteDataSource(
 
     suspend fun getTours(id: Int): ResponseApi<List<Tour>> =
         api.getTours(id = id)
+
+    suspend fun getBlogs(id: Int, format: String): ResponseApi<List<Blog>> =
+        api.getBlogs(id = id, format = format)
 }

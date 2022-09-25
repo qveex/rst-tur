@@ -14,4 +14,6 @@ class Repository @Inject constructor(
     suspend fun getRooms(id: Int) = remote.getRooms(id = id)
 
     suspend fun getTours(id: Int) = remote.getTours(id = id)
+
+    suspend fun getBlogs(id: Int, format: String) = remote.getBlogs(id = id, format = format)
 }

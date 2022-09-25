@@ -12,4 +12,6 @@ class HomeInteractor(
     suspend fun getRooms(id: Int) = repository.getRooms(id = id)
 
     suspend fun getTours(id: Int) = repository.getTours(id = id)
+
+    suspend fun getBlogs(id: Int, format: String) = repository.getBlogs(id = id, format = format)
 }
