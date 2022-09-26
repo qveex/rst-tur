@@ -33,7 +33,6 @@ fun FoodList(foods: List<Fun>) {
         }
         Box(modifier = Modifier.padding(vertical = 20.dp)) {
             RoundedButton(
-                isDarkTheme = false,
                 text = "Показать все (${foods.size})",
                 onClick = { }
             )

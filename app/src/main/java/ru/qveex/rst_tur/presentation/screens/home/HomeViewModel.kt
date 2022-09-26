@@ -7,10 +7,7 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import ru.qveex.rst_tur.domain.interactors.Interactors
-import ru.qveex.rst_tur.domain.models.Blog
-import ru.qveex.rst_tur.domain.models.Fun
-import ru.qveex.rst_tur.domain.models.Room
-import ru.qveex.rst_tur.domain.models.Tour
+import ru.qveex.rst_tur.domain.models.*
 import javax.inject.Inject
 
 @HiltViewModel
@@ -19,6 +16,9 @@ class HomeViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val interactor = interactors.homeInteractor
+
+    private val _buttons = mutableStateListOf<Button>()
+    val buttons get() = _buttons
 
     private val _foods = mutableStateListOf<Fun>()
     val foods get() = _foods
@@ -43,6 +43,7 @@ class HomeViewModel @Inject constructor(
 
 
     init {
+        getMainObjects()
         getFoods()
         getRooms()
         getFuns()
@@ -50,6 +51,18 @@ class HomeViewModel @Inject constructor(
         getPlaces()
         getKids()
         getBlogs()
+    }
+
+    private fun getMainObjects() {
+        viewModelScope.launch {
+            val response = interactor.getMainObjects(id = 117)
+            if (response.success) {
+                Log.i("HomeViewModel", "mainObjects = ${response.data}")
+                _buttons.addAll(response.data.buttons)
+            } else {
+
+            }
+        }
     }
 
     private fun getFoods() {
