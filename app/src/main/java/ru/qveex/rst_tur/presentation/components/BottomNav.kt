@@ -40,7 +40,7 @@ fun RowScope.AddItem(
 ) {
     BottomNavigationItem(
         label = {
-            Text(text = screen.title)
+            Text(text = screen.title, style = MaterialTheme.typography.caption)
         },
         icon = {
             Icon(

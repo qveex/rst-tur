@@ -14,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import ru.qveex.rst_tur.utils.Constants
 
 @Composable
 fun TopBarMain(
@@ -24,13 +25,15 @@ fun TopBarMain(
 ) {
     TopAppBar(
         navigationIcon = {
-            IconButton(
-                onClick = { onClickNavIcon() }
-            ) {
-                Icon(
-                    imageVector = Icons.Outlined.ArrowBack,
-                    contentDescription = "Back icon"
-                )
+            if (onClickNavIcon != Constants.EMPTY_LAMBDA) {
+                IconButton(
+                    onClick = { onClickNavIcon() }
+                ) {
+                    Icon(
+                        imageVector = Icons.Outlined.ArrowBack,
+                        contentDescription = "Back icon"
+                    )
+                }
             }
         },
         title = {

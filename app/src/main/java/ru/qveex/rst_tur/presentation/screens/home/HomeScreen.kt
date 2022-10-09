@@ -3,6 +3,7 @@ package ru.qveex.rst_tur.presentation.screens.home
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
@@ -16,7 +17,8 @@ fun HomeScreen(
     sharedViewModel: SharedViewModel,
     homeViewModel: HomeViewModel = hiltViewModel()
 ) {
-    sharedViewModel.changeScreenTitle(Screen.Home.title)
+    LaunchedEffect(Unit) { sharedViewModel.changeScreenTitle(Screen.Home.title) }
+
     LazyColumn(
         verticalArrangement = Arrangement.spacedBy(12.dp)
     ) {

@@ -8,4 +8,6 @@ object Constants {
     const val TARGET_OFFSET_X = -1000
 
     const val BLOG_ARGUMENT_KEY = "blogId"
+
+    val EMPTY_LAMBDA: () -> Unit = { }
 }

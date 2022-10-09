@@ -8,6 +8,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
@@ -26,7 +27,7 @@ fun BlogScreen(
     blogViewModel: BlogViewModel = hiltViewModel(),
     blogId: Int
 ) {
-    sharedViewModel.changeScreenTitle(blogViewModel.blog.value?.title ?: "")
+    LaunchedEffect(Unit) { sharedViewModel.changeScreenTitle(blogViewModel.blog.value?.title ?: "") }
     blogViewModel.getBlog(blogId)
 
     Column(

@@ -31,14 +31,12 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideRetrofitInstance(okHttpClient: OkHttpClient): Retrofit {
-        val contentType = "application/json".toMediaType()
-        return Retrofit.Builder()
+    fun provideRetrofitInstance(okHttpClient: OkHttpClient): Retrofit =
+        Retrofit.Builder()
             .baseUrl(BASE_URL)
             .client(okHttpClient)
-            .addConverterFactory(Json.asConverterFactory(contentType))
+            .addConverterFactory(Json.asConverterFactory("application/json".toMediaType()))
             .build()
-    }
 
     @Provides
     @Singleton

@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -17,7 +18,7 @@ fun MapScreen(
     sharedViewModel: SharedViewModel,
     mapViewModel: MapViewModel = hiltViewModel()
 ) {
-    sharedViewModel.changeScreenTitle(Screen.Map.title)
+    LaunchedEffect(Unit) { sharedViewModel.changeScreenTitle(Screen.Map.title) }
     Box(
         modifier = Modifier
             .fillMaxSize()
