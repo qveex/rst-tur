@@ -6,5 +6,6 @@ data class Interactors(
     val chatsInteractor: ChatsInteractor,
     val homeInteractor: HomeInteractor,
     val profileInteractor: ProfileInteractor,
-    val mapInteractor: MapInteractor
+    val mapInteractor: MapInteractor,
+    val splashInteractor: SplashInteractor
 )

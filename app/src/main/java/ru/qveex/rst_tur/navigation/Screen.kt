@@ -47,4 +47,10 @@ sealed class Screen(
     ) {
         fun passId(blogId: Int) = "blog/$blogId"
     }
+
+    object Splash: Screen(
+        route = "splash",
+        title = "Splash",
+        icon = Icons.Outlined.Animation
+    )
 }

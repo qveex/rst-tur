@@ -5,8 +5,10 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
+import androidx.navigation.compose.currentBackStackEntryAsState
 import ru.qveex.rst_tur.navigation.Screen
 import ru.qveex.rst_tur.navigation.SetupNavGraph
 import ru.qveex.rst_tur.presentation.components.BottomNav
@@ -21,8 +23,11 @@ fun MainScreen(
 ) {
 
     var title by remember { mutableStateOf("") }
-    val route by remember { mutableStateOf(navController.currentDestination?.route) }
     val popBackStack: () -> Unit = { navController.popBackStack() }
+    var showBottomBar by rememberSaveable { mutableStateOf(true) }
+    var showTopBar by rememberSaveable { mutableStateOf(true) }
+    val navBackStackEntry by navController.currentBackStackEntryAsState()
+
 
     LaunchedEffect(navController) {
         navController.currentBackStackEntryFlow.collect{ backStackEntry ->
@@ -38,19 +43,28 @@ fun MainScreen(
         }
     }
 
+    showBottomBar = when (navBackStackEntry?.destination?.route) {
+        Screen.Splash.route -> false
+        else -> true
+    }
+    showTopBar = when (navBackStackEntry?.destination?.route) {
+        Screen.Splash.route -> false
+        else -> true
+    }
+
     Scaffold(
         topBar = {
-             TopBarMain(
+             if (showTopBar) TopBarMain(
                  isDarkTheme = sharedViewModel.isDarkThemeState.value,
                  title = sharedViewModel.title.value,
                  onClickNavIcon =
-                    if (route != Screen.Home.route) popBackStack
+                    if (navController.currentDestination?.route != Screen.Home.route) popBackStack
                     else Constants.EMPTY_LAMBDA
              ) {
                  sharedViewModel.changeThemeState()
              }
         },
-        bottomBar = { BottomNav(navController = navController) },
+        bottomBar = { if (showBottomBar) BottomNav(navController = navController) },
         content = {
             Box(modifier = Modifier.padding(it)) {
                 SetupNavGraph(navController = navController, sharedViewModel = sharedViewModel)

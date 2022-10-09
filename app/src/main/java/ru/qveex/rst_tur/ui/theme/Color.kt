@@ -1,5 +1,6 @@
 package ru.qveex.rst_tur.ui.theme
 
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 
 val Purple200 = Color(0xFFBB86FC)
@@ -19,3 +20,10 @@ val DarkPrimaryVariant = Color(0xFF000000)
 val DarkSecondary = Color(0xFF121212)
 val DarkSurface = Color(0xFF2C2C2E)
 val DarkOnSurface = Color(0xFFFFFFFF)
+
+val MainGradient = Brush.linearGradient(
+    listOf(
+        Color(0xB0780206),
+        Color(0xF0061161),
+    )
+)

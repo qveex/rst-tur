@@ -15,6 +15,7 @@ import ru.qveex.rst_tur.presentation.screens.home.HomeScreen
 import ru.qveex.rst_tur.presentation.screens.main.SharedViewModel
 import ru.qveex.rst_tur.presentation.screens.map.MapScreen
 import ru.qveex.rst_tur.presentation.screens.profile.ProfileScreen
+import ru.qveex.rst_tur.presentation.screens.splash.SplashScreen
 import ru.qveex.rst_tur.utils.Constants.BLOG_ARGUMENT_KEY
 import ru.qveex.rst_tur.utils.Constants.INITIAL_OFFSET_X
 import ru.qveex.rst_tur.utils.Constants.SCREEN_TRANSIT_DURATION_MILLIS
@@ -28,12 +29,18 @@ fun SetupNavGraph(
 ) {
     AnimatedNavHost(
         navController = navController,
-        startDestination = Screen.Home.route
+        startDestination = Screen.Splash.route
     ) {
-        
+        composable(
+            route = Screen.Splash.route,
+            enterTransition = { fadeIn(animationSpec = tween(SCREEN_TRANSIT_DURATION_MILLIS * 2)) },
+            exitTransition = { fadeOut(animationSpec = tween(SCREEN_TRANSIT_DURATION_MILLIS * 2)) },
+        ) {
+            SplashScreen(navController = navController)
+        }
         composable(
             route = Screen.Home.route,
-            enterTransition = { enterAnim() },
+            enterTransition = { if (navController.currentDestination!!.route!! != Screen.Splash.route) { fadeIn(animationSpec = tween(SCREEN_TRANSIT_DURATION_MILLIS)) } else { enterAnim() } } ,
             exitTransition = { exitAnim() },
         ) {
             HomeScreen(sharedViewModel = sharedViewModel, navController = navController)
@@ -74,7 +81,6 @@ fun SetupNavGraph(
         ) {
             BlogScreen(sharedViewModel = sharedViewModel, blogId = it.arguments!!.getInt(BLOG_ARGUMENT_KEY))
         }
-
     }
 }
 

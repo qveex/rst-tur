@@ -20,6 +20,7 @@ object RepositoryModule {
             chatsInteractor = ChatsInteractor(repository),
             homeInteractor = HomeInteractor(repository),
             profileInteractor = ProfileInteractor(repository),
-            mapInteractor = MapInteractor(repository)
+            mapInteractor = MapInteractor(repository),
+            splashInteractor = SplashInteractor(repository)
         )
 }
