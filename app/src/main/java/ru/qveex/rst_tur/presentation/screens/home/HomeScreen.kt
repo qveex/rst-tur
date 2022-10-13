@@ -2,12 +2,13 @@ package ru.qveex.rst_tur.presentation.screens.home
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.runtime.*
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import ru.qveex.rst_tur.navigation.Screen
+import ru.qveex.rst_tur.presentation.components.UpButton
 import ru.qveex.rst_tur.presentation.components.lists.*
 import ru.qveex.rst_tur.presentation.screens.main.SharedViewModel
 
@@ -19,7 +20,9 @@ fun HomeScreen(
 ) {
     LaunchedEffect(Unit) { sharedViewModel.changeScreenTitle(Screen.Home.title) }
 
+    val listState = rememberLazyListState()
     LazyColumn(
+        state = listState,
         verticalArrangement = Arrangement.spacedBy(12.dp)
     ) {
         item { FoodList(foods = homeViewModel.foods) }
@@ -29,4 +32,5 @@ fun HomeScreen(
         item { KidList(kids = homeViewModel.kids) }
         item { TourList(tours = homeViewModel.tours) }
     }
+    UpButton(listState = listState)
 }
