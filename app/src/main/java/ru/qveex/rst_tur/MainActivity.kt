@@ -18,7 +18,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             val sharedViewModel: SharedViewModel = hiltViewModel()
-            RstturTheme(darkTheme = sharedViewModel.isDarkThemeState.value) {
+            RstturTheme(darkTheme = sharedViewModel.isDarkThemeState) {
                 val navController = rememberAnimatedNavController()
                 MainScreen(
                     navController = navController,

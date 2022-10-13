@@ -34,7 +34,7 @@ fun TourItem(tour: Tour) {
                 .clip(RoundedCornerShape(size = 8.dp)),
             painter = painter,
             contentScale = ContentScale.Crop,
-            contentDescription = "Food photo"
+            contentDescription = "Tour photo"
         )
         val duration =
             if (tour.duration.hour != null)

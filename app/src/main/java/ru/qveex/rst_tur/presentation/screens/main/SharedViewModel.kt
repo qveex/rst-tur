@@ -12,7 +12,7 @@ class SharedViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val _isDarkThemeState: MutableState<Boolean> = mutableStateOf(value = false)
-    val isDarkThemeState get() = _isDarkThemeState
+    val isDarkThemeState get() = _isDarkThemeState.value
     fun changeThemeState() = run { _isDarkThemeState.value = !_isDarkThemeState.value }
 
     private val _title: MutableState<String> = mutableStateOf(value = "")

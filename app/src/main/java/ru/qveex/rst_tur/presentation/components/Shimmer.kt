@@ -1,6 +1,7 @@
 package ru.qveex.rst_tur.presentation.components
 
 import androidx.compose.animation.core.*
+import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
@@ -8,10 +9,15 @@ import androidx.compose.ui.graphics.Color
 
 @Composable
 fun AnimatedShimmer(content: @Composable (Brush) -> Unit) {
-    val shimmerColors = listOf(
-        Color.LightGray.copy(alpha = 0.6f),
+
+    val shimmerColors = if (MaterialTheme.colors.isLight) listOf(
+        Color.LightGray.copy(alpha = 0.65f),
         Color.LightGray.copy(alpha = 0.2f),
-        Color.LightGray.copy(alpha = 0.6f),
+        Color.LightGray.copy(alpha = 0.65f)
+    ) else listOf(
+        Color.LightGray.copy(alpha = 0.12f),
+        Color.LightGray.copy(alpha = 0.27f),
+        Color.LightGray.copy(alpha = 0.12f)
     )
 
     val transition = rememberInfiniteTransition()

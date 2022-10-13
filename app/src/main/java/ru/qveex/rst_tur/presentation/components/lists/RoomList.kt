@@ -21,7 +21,7 @@ fun RoomList(rooms: List<Room>) {
         item {
             Text(
                 modifier = Modifier.padding(vertical = 14.dp),
-                text = "Питание",
+                text = "Отели",
                 fontSize = MaterialTheme.typography.h5.fontSize
             )
         }

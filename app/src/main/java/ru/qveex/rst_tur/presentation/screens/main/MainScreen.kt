@@ -55,7 +55,7 @@ fun MainScreen(
     Scaffold(
         topBar = {
              if (showTopBar) TopBarMain(
-                 isDarkTheme = sharedViewModel.isDarkThemeState.value,
+                 isDarkTheme = sharedViewModel.isDarkThemeState,
                  title = sharedViewModel.title.value,
                  onClickNavIcon =
                     if (navController.currentDestination?.route != Screen.Home.route) popBackStack
