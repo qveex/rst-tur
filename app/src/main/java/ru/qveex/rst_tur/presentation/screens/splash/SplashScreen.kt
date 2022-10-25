@@ -18,13 +18,16 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import kotlinx.coroutines.delay
 import ru.qveex.rst_tur.navigation.Screen
 import ru.qveex.rst_tur.ui.theme.MainGradient
 
 @Composable
 fun SplashScreen(navController: NavController) {
+
     var startAnimation by remember { mutableStateOf(false) }
+    HideUIVisibilityState(state = !startAnimation)
     val alphaAnim by animateFloatAsState(
         targetValue = if (startAnimation) 1f else 0f,
         animationSpec = tween(durationMillis = 1000)
@@ -64,4 +67,13 @@ fun Splash(alpha: Float, degrees: Float) {
             tint = MaterialTheme.colors.primary
         )
     }
+}
+
+@Composable
+private fun HideUIVisibilityState(state: Boolean) {
+    val systemUiController = rememberSystemUiController()
+    systemUiController.isSystemBarsVisible = state
+    systemUiController.isNavigationBarVisible = state
+    systemUiController.isStatusBarVisible = state
+    systemUiController.isNavigationBarContrastEnforced = state
 }
