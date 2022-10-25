@@ -6,7 +6,7 @@ import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyListState
+import androidx.compose.foundation.lazy.grid.LazyGridState
 import androidx.compose.material.FloatingActionButton
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
@@ -20,9 +20,9 @@ import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
 
 @Composable
-fun UpButton(listState: LazyListState) {
+fun UpButton(state: LazyGridState) {
 
-    val showButton = listState.firstVisibleItemIndex > 0
+    val showButton = state.firstVisibleItemIndex > 0
     val coroutineScope = rememberCoroutineScope()
     Box(modifier = Modifier.fillMaxSize()) {
         AnimatedVisibility(
@@ -36,7 +36,7 @@ fun UpButton(listState: LazyListState) {
             FloatingActionButton(
                 onClick = {
                     coroutineScope.launch {
-                        listState.animateScrollToItem(index = 0)
+                        state.animateScrollToItem(index = 0)
                     }
                 },
                 backgroundColor = MaterialTheme.colors.primaryVariant
