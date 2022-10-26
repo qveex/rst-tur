@@ -1,6 +1,8 @@
 package ru.qveex.rst_tur.presentation.screens.blog
 
 import android.util.Log
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -16,6 +18,9 @@ class BlogViewModel @Inject constructor(
 ) : ViewModel() {
     val interactor = interactors.blogInteractor
 
+    private val _colorPalette: MutableState<Map<String, String>> = mutableStateOf(mapOf())
+    val colorPalette: State<Map<String, String>> = _colorPalette
+
     private val _blog = mutableStateOf<BlogInfo?>(null)
     val blog get() = _blog
 
@@ -29,6 +34,10 @@ class BlogViewModel @Inject constructor(
 
             }
         }
+    }
+
+    fun setColorPalette(colors: Map<String, String>) {
+        _colorPalette.value = colors
     }
 
 }

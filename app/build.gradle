@@ -72,9 +72,6 @@ dependencies {
     implementation 'androidx.navigation:navigation-compose:2.5.0-beta01'
     implementation 'com.google.accompanist:accompanist-navigation-animation:0.24.6-alpha'
 
-    // Picasso
-    //implementation 'dev.chrisbanes.accompanist:accompanist-picasso:0.6.2'
-
     // Coil (Instead of Picasso)
     implementation("io.coil-kt:coil-compose:2.2.1")
 
@@ -86,6 +83,9 @@ dependencies {
 
     // Serialization
     implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.0"
+
+    // Palette API
+    implementation "androidx.palette:palette-ktx:1.0.0"
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

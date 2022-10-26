@@ -38,6 +38,7 @@ fun FoodItem(food: Fun) {
             contentDescription = "Food photo"
         )
         if (painter.state !is AsyncImagePainter.State.Success || true) {
+            Spacer(modifier = Modifier.padding(12.dp))
             AnimatedShimmer { ShimmerFoodItem(brush = it) }
         } else {
             Text(

@@ -45,10 +45,12 @@ fun MainScreen(
 
     showBottomBar = when (navBackStackEntry?.destination?.route) {
         Screen.Splash.route -> false
+        Screen.Blog.route -> false
         else -> true
     }
     showTopBar = when (navBackStackEntry?.destination?.route) {
         Screen.Splash.route -> false
+        Screen.Blog.route -> false
         else -> true
     }
 
