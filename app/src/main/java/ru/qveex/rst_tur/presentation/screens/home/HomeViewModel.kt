@@ -55,95 +55,119 @@ class HomeViewModel @Inject constructor(
 
     private fun getMainObjects() {
         viewModelScope.launch {
-            val response = interactor.getMainObjects(id = 117)
-            if (response.success) {
-                Log.i("HomeViewModel", "mainObjects = ${response.data}")
-                _buttons.addAll(response.data.buttons)
-            } else {
+            try {
+                val response = interactor.getMainObjects(id = 117)
+                if (response.success) {
+                    Log.i("HomeViewModel", "mainObjects = ${response.data}")
+                    _buttons.addAll(response.data.buttons)
+                } else {
 
-            }
+                }
+            } catch (e: Exception) { return@launch }
+
         }
     }
 
     private fun getFoods() {
         viewModelScope.launch {
-            val response = interactor.getFuns(id = 117, type = "food")
-            if (response.success) {
-                Log.i("HomeViewModel", "foods = ${response.data}")
-                _foods.addAll(response.data.subList(0, 6))
-            } else {
+            try {
+                val response = interactor.getFuns(id = 117, type = "food")
+                if (response.success) {
+                    Log.i("HomeViewModel", "foods = ${response.data}")
+                    _foods.addAll(response.data.subList(0, 6))
+                } else {
 
-            }
+                }
+            } catch (e: Exception) { return@launch }
+
         }
     }
 
     private fun getTours() {
         viewModelScope.launch {
-            val response = interactor.getTours(id = 117)
-            if (response.success) {
-                _tours.addAll(response.data.subList(0, 6))
-            } else {
+            try {
+                val response = interactor.getTours(id = 117)
+                if (response.success) {
+                    _tours.addAll(response.data.subList(0, 6))
+                } else {
 
-            }
+                }
+            } catch (e: Exception) { return@launch }
+
         }
     }
 
     private fun getRooms() {
         viewModelScope.launch {
-            val response = interactor.getRooms(id = 117)
-            if (response.success) {
-                Log.i("HomeViewModel", "rooms = ${response.data}")
-                _rooms.addAll(response.data.subList(0, 6))
-            } else {
+            try {
+                val response = interactor.getRooms(id = 117)
+                if (response.success) {
+                    Log.i("HomeViewModel", "rooms = ${response.data}")
+                    _rooms.addAll(response.data.subList(0, 6))
+                } else {
 
-            }
+                }
+            } catch (e: Exception) { return@launch }
+
         }
     }
 
     private fun getPlaces() {
         viewModelScope.launch {
-            val response = interactor.getFuns(id = 117, type = "place")
-            if (response.success) {
-                _places.addAll(response.data.subList(0, 6))
-            } else {
+            try {
+                val response = interactor.getFuns(id = 117, type = "place")
+                if (response.success) {
+                    _places.addAll(response.data.subList(0, 6))
+                } else {
 
-            }
+                }
+            } catch (e: Exception) { return@launch }
+
         }
     }
 
     private fun getFuns() {
         viewModelScope.launch {
-            val response = interactor.getFuns(id = 117, type = "fun")
-            if (response.success) {
-                Log.i("HomeViewModel", "funs = ${response.data}")
-                _funs.addAll(response.data.subList(0, 6))
-            } else {
+            try {
+                val response = interactor.getFuns(id = 117, type = "fun")
+                if (response.success) {
+                    Log.i("HomeViewModel", "funs = ${response.data}")
+                    _funs.addAll(response.data.subList(0, 6))
+                } else {
 
-            }
+                }
+            } catch (e: Exception) { return@launch }
+
         }
     }
 
     private fun getKids() {
         viewModelScope.launch {
-            val response = interactor.getFuns(id = 117, type = "child")
-            if (response.success) {
-                Log.i("HomeViewModel", "kids = ${response.data}")
-                _kids.addAll(response.data.subList(0, 2))
-            } else {
+            try {
+                val response = interactor.getFuns(id = 117, type = "child")
+                if (response.success) {
+                    Log.i("HomeViewModel", "kids = ${response.data}")
+                    _kids.addAll(response.data.subList(0, 2))
+                } else {
 
-            }
+                }
+            } catch (e: Exception) { return@launch }
+
         }
     }
 
     private fun getBlogs() {
         viewModelScope.launch {
-            val response = interactor.getBlogs(id = 117, format = "card")
-            if (response.success) {
-                Log.i("HomeViewModel", "blogs = ${response.data}")
-                _blogs.addAll(response.data.subList(0, 6))
-            } else {
+            try {
+                val response = interactor.getBlogs(id = 117, format = "card")
+                if (response.success) {
+                    Log.i("HomeViewModel", "blogs = ${response.data}")
+                    _blogs.addAll(response.data.subList(0, 6))
+                } else {
 
-            }
+                }
+            } catch (e: Exception) { return@launch }
+
         }
     }
 }
