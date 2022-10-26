@@ -1,6 +1,7 @@
 package ru.qveex.rst_tur.presentation.components.list_items
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.MaterialTheme
@@ -16,11 +17,13 @@ import coil.compose.rememberAsyncImagePainter
 import ru.qveex.rst_tur.domain.models.Fun
 
 @Composable
-fun FunItem(`fun`: Fun) {
+fun FunItem(`fun`: Fun, onClick: () -> Unit) {
     val maxWidth = LocalConfiguration.current.screenWidthDp
     val itemWidth = (maxWidth.dp - 50.dp) / 2
     Column(
-        modifier = Modifier.width(itemWidth),
+        modifier = Modifier
+            .width(itemWidth)
+            .clickable { onClick() },
         verticalArrangement = Arrangement.spacedBy(2.dp)
     ) {
         Image(
