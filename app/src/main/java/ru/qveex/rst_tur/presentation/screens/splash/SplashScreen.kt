@@ -27,7 +27,7 @@ import ru.qveex.rst_tur.ui.theme.MainGradient
 fun SplashScreen(navController: NavController) {
 
     var startAnimation by remember { mutableStateOf(false) }
-    HideUIVisibilityState(state = !startAnimation)
+    HideUIVisibilityState(state = false)
     val alphaAnim by animateFloatAsState(
         targetValue = if (startAnimation) 1f else 0f,
         animationSpec = tween(durationMillis = 1000)
@@ -64,13 +64,13 @@ fun Splash(alpha: Float, degrees: Float) {
             modifier = Modifier.size(128.dp).rotate(degrees = degrees),
             imageVector = Icons.Outlined.DarkMode,
             contentDescription = "Splash Icon",
-            tint = MaterialTheme.colors.primary
+            tint = MaterialTheme.colors.background
         )
     }
 }
 
 @Composable
-private fun HideUIVisibilityState(state: Boolean) {
+fun HideUIVisibilityState(state: Boolean) {
     val systemUiController = rememberSystemUiController()
     systemUiController.isSystemBarsVisible = state
     systemUiController.isNavigationBarVisible = state

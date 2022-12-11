@@ -28,7 +28,6 @@ fun MainScreen(
     var showTopBar by rememberSaveable { mutableStateOf(true) }
     val navBackStackEntry by navController.currentBackStackEntryAsState()
 
-
     LaunchedEffect(navController) {
         navController.currentBackStackEntryFlow.collect{ backStackEntry ->
             title = when (backStackEntry.destination.route) {
@@ -58,7 +57,7 @@ fun MainScreen(
         topBar = {
              if (showTopBar) TopBarMain(
                  isDarkTheme = sharedViewModel.isDarkThemeState,
-                 title = sharedViewModel.title.value,
+                 title = sharedViewModel.title,
                  onClickNavIcon =
                     if (navController.currentDestination?.route != Screen.Home.route) popBackStack
                     else Constants.EMPTY_LAMBDA

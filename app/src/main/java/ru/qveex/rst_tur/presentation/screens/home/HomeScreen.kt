@@ -9,11 +9,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import ru.qveex.rst_tur.navigation.Screen
 import ru.qveex.rst_tur.presentation.components.UpButton
 import ru.qveex.rst_tur.presentation.components.list_items.*
 import ru.qveex.rst_tur.presentation.components.lists.*
 import ru.qveex.rst_tur.presentation.screens.main.SharedViewModel
+import ru.qveex.rst_tur.presentation.screens.splash.HideUIVisibilityState
 
 @Composable
 fun HomeScreen(
@@ -21,7 +23,15 @@ fun HomeScreen(
     sharedViewModel: SharedViewModel,
     homeViewModel: HomeViewModel = hiltViewModel()
 ) {
-    LaunchedEffect(Unit) { sharedViewModel.changeScreenTitle(Screen.Home.title) }
+
+    HideUIVisibilityState(state = true)
+    val systemUiController = rememberSystemUiController()
+    val backgroundColor = MaterialTheme.colors.background
+    LaunchedEffect(Unit) {
+        sharedViewModel.changeScreenTitle(Screen.Home.title)
+        systemUiController.setSystemBarsColor(backgroundColor)
+    }
+
     val listState = rememberLazyGridState()
     LazyVerticalGrid(
         modifier = Modifier.padding(top = 14.dp, start = 14.dp, end = 14.dp),
@@ -31,95 +41,82 @@ fun HomeScreen(
         horizontalArrangement = Arrangement.spacedBy(12.dp)
     ) {
 
-        item(span = { GridItemSpan(maxCurrentLineSpan) }) {
+        single {
             Text(
                 text = "Питание",
                 fontSize = MaterialTheme.typography.h5.fontSize
             )
         }
+
         items(items = homeViewModel.foods) { food ->
             FoodItem(food = food)
         }
 
-
-        item(span = { GridItemSpan(maxCurrentLineSpan) }) {
+        single {
             Text(
                 text = "Отели",
                 fontSize = MaterialTheme.typography.h5.fontSize
             )
         }
-        items(
-            span = { GridItemSpan(maxCurrentLineSpan) },
-            items = homeViewModel.rooms
-        ) { room ->
+
+        singleList(items = homeViewModel.rooms) { room ->
             RoomItem(room = room)
         }
 
-
-        // title is already in list
-        item(span = { GridItemSpan(maxCurrentLineSpan) }) {
+        single {
             FunList(funs = homeViewModel.funs)
         }
 
-
-
-        item(span = { GridItemSpan(maxCurrentLineSpan) }) {
+        single {
             Text(
                 text = "Блог",
                 fontSize = MaterialTheme.typography.h5.fontSize
             )
         }
-        items(
-            span = { GridItemSpan(maxCurrentLineSpan) },
-            items = homeViewModel.blogs
-        ) { blog ->
+
+        singleList(homeViewModel.blogs) { blog ->
             BlogItem(blog = blog) { navController.navigate(Screen.Blog.passId(blog.id)) }
         }
 
-
-
-        item(span = { GridItemSpan(maxCurrentLineSpan) }) {
+        single {
             Text(
                 text = "Для детей",
                 fontSize = MaterialTheme.typography.h5.fontSize
             )
         }
-        items(
-            span = { GridItemSpan(maxCurrentLineSpan) },
-            items = homeViewModel.kids
-        ) { kid ->
+
+        singleList(homeViewModel.kids) { kid ->
             KidItem(kid = kid)
         }
 
-
-        item(span = { GridItemSpan(maxCurrentLineSpan) }) {
+        single {
             Text(
                 text = "Туры",
                 fontSize = MaterialTheme.typography.h5.fontSize
             )
         }
+
         items(items = homeViewModel.tours) { tour ->
             TourItem(tour = tour)
         }
     }
     UpButton(state = listState)
-    /*LazyColumn(
-        state = listState,
-        verticalArrangement = Arrangement.spacedBy(12.dp)
-    ) {
-        //item { FoodListFixed(foods = homeViewModel.foods, size = 6) }
-
-
-        item { FoodList(foods = homeViewModel.foods) }
-        item { RoomList(rooms = homeViewModel.rooms) }
-        item { FunList(funs = homeViewModel.funs) }
-        item { BlogList(blogs = homeViewModel.blogs, navController = navController ) }
-        item { KidList(kids = homeViewModel.kids) }
-        item { TourList(tours = homeViewModel.tours) }
-    }*/
-    //UpButton(listState = listState)
 }
 
 
-// TODO fun for single element in grid
-// TODO funs for lists
+private inline fun LazyGridScope.single(crossinline itemContent: @Composable (LazyGridItemScope.() -> Unit)) {
+    item(
+        span = { GridItemSpan(maxCurrentLineSpan) }
+    ) {
+        itemContent()
+    }
+}
+
+private inline fun <T> LazyGridScope.singleList(items: List<T>, crossinline listContent: @Composable ((T) -> Unit)) {
+    items(
+        span = { GridItemSpan(maxCurrentLineSpan) },
+        items = items
+    ) { item ->
+        listContent(item)
+    }
+}
