@@ -39,7 +39,7 @@ fun BlogScreen(
     blogViewModel.getBlog(blogId)
     val context = LocalContext.current
     LaunchedEffect(true) {
-        delay(5_000)
+        delay(2_000)
         sharedViewModel.changeScreenTitle(blogViewModel.blog.value?.title ?: "")
         val bitmap = convertImageUrlToBitmap(
             imageUrl = blogViewModel.blog.value?.image?.sm ?: "https://cdn2.rsttur.ru/photos/fun-115-360-240-80.jpg?v=1623753485",

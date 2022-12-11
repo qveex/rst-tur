@@ -1,12 +1,13 @@
 package ru.qveex.rst_tur.presentation.screens.profile
 
-import androidx.compose.foundation.background
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.PickVisualMediaRequest
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.DarkMode
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.material.icons.outlined.Search
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
@@ -21,16 +22,24 @@ fun ProfileScreen(
     sharedViewModel: SharedViewModel,
     profileViewModel: ProfileViewModel = hiltViewModel()
 ) {
+    val photoPicker = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.PickVisualMedia()
+    ) { sharedViewModel.setSharedImage(it) }
+
     LaunchedEffect(Unit) { sharedViewModel.changeScreenTitle(Screen.Profile.title) }
     Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(color = Color.DarkGray),
+        modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center,
     ) {
         CircleButton(
             text = "click",
-            onClicked = { },
+            onClicked = {
+                photoPicker.launch(
+                    PickVisualMediaRequest(
+                        ActivityResultContracts.PickVisualMedia.ImageOnly
+                    )
+                )
+            },
             gradient = Brush.linearGradient(
                 listOf(
                     Color(0xffc31432),
@@ -38,7 +47,7 @@ fun ProfileScreen(
                 )
             ),
             textColor = Color.White,
-            image = Icons.Outlined.DarkMode
+            image = Icons.Outlined.Search
         )
     }
 }
