@@ -26,8 +26,8 @@ fun CircleButton(
 
     val borderGrad = Brush.linearGradient(
         listOf(
-            MaterialTheme.colors.secondary,
-            MaterialTheme.colors.primary,
+            MaterialTheme.colors.onBackground,
+            MaterialTheme.colors.onPrimary,
         )
     )
     val size = maxOf(
