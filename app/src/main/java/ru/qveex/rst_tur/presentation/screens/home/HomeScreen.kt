@@ -16,13 +16,13 @@ import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import ru.qveex.rst_tur.navigation.Screen
 import ru.qveex.rst_tur.presentation.components.ShimmerList
 import ru.qveex.rst_tur.presentation.components.UpButton
+import ru.qveex.rst_tur.presentation.components.list
 import ru.qveex.rst_tur.presentation.components.list_items.*
 import ru.qveex.rst_tur.presentation.components.lists.FunList
+import ru.qveex.rst_tur.presentation.components.single
 import ru.qveex.rst_tur.presentation.screens.main.SharedViewModel
 import ru.qveex.rst_tur.presentation.screens.splash.HideUIVisibilityState
 import ru.qveex.rst_tur.utils.AppStatus
-import ru.qveex.rst_tur.utils.list
-import ru.qveex.rst_tur.utils.single
 
 private const val TAG = "HomeScreen"
 

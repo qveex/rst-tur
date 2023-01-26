@@ -6,6 +6,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import ru.qveex.rst_tur.domain.interactors.Interactors
 import ru.qveex.rst_tur.domain.models.*
@@ -19,6 +20,7 @@ class HomeViewModel @Inject constructor(
 
     companion object {
         private const val TAG = "HomeViewModel"
+        private const val DELAY = 2000L
     }
     
     private val interactor = interactors.homeInteractor
@@ -66,6 +68,7 @@ class HomeViewModel @Inject constructor(
     private fun getMainObjects() {
         viewModelScope.launch {
             _status.value = AppStatus.Loading()
+            delay(DELAY)
             _status.value = try {
                 val response = interactor.getMainObjects(id = 117)
                 if (response.success) {
@@ -83,6 +86,7 @@ class HomeViewModel @Inject constructor(
     private fun getFoods() {
         viewModelScope.launch {
             _status.value = AppStatus.Loading()
+            delay(DELAY)
             _status.value = try {
                 val response = interactor.getFuns(id = 117, type = "food")
                 if (response.success) {
@@ -99,6 +103,7 @@ class HomeViewModel @Inject constructor(
     private fun getTours() {
         viewModelScope.launch {
             _status.value = AppStatus.Loading()
+            delay(DELAY)
             _status.value = try {
                 val response = interactor.getTours(id = 117)
                 if (response.success) {
@@ -115,6 +120,7 @@ class HomeViewModel @Inject constructor(
     private fun getRooms() {
         viewModelScope.launch {
             _status.value = AppStatus.Loading()
+            delay(DELAY)
             _status.value = try {
                 val response = interactor.getRooms(id = 117)
                 if (response.success) {
@@ -132,6 +138,7 @@ class HomeViewModel @Inject constructor(
     private fun getPlaces() {
         viewModelScope.launch {
             _status.value = AppStatus.Loading()
+            delay(DELAY)
             _status.value = try {
                 val response = interactor.getFuns(id = 117, type = "place")
                 if (response.success) {
@@ -148,6 +155,7 @@ class HomeViewModel @Inject constructor(
     private fun getFuns() {
         viewModelScope.launch {
             _status.value = AppStatus.Loading()
+            delay(DELAY)
             _status.value = try {
                 val response = interactor.getFuns(id = 117, type = "fun")
                 if (response.success) {
@@ -165,6 +173,7 @@ class HomeViewModel @Inject constructor(
     private fun getKids() {
         viewModelScope.launch {
             _status.value = AppStatus.Loading()
+            delay(DELAY)
             _status.value = try {
                 val response = interactor.getFuns(id = 117, type = "child")
                 if (response.success) {
@@ -182,6 +191,7 @@ class HomeViewModel @Inject constructor(
     private fun getBlogs() {
         viewModelScope.launch {
             _status.value = AppStatus.Loading()
+            delay(DELAY)
             _status.value = try {
                 val response = interactor.getBlogs(id = 117, format = "card")
                 if (response.success) {

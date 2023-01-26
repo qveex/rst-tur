@@ -20,7 +20,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import coil.compose.rememberAsyncImagePainter
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import kotlinx.coroutines.delay
 import ru.qveex.rst_tur.presentation.components.AnimatedShimmer
@@ -38,24 +37,31 @@ fun BlogScreen(
 
     blogViewModel.getBlog(blogId)
     val context = LocalContext.current
+    val bitmap = blogViewModel.bitmap
+
+    if (bitmap == null) {
+        AnimatedShimmer { BlogShimmer(brush = it) }
+    }
+
     LaunchedEffect(true) {
-        delay(2_000)
-        sharedViewModel.changeScreenTitle(blogViewModel.blog.value?.title ?: "")
-        val bitmap = convertImageUrlToBitmap(
-            imageUrl = blogViewModel.blog.value?.image?.sm ?: "https://cdn2.rsttur.ru/photos/fun-115-360-240-80.jpg?v=1623753485",
+        delay(2000)
+        sharedViewModel.changeScreenTitle(blogViewModel.blog?.title ?: "")
+        val bitmap_ = convertImageUrlToBitmap(
+            imageUrl = blogViewModel.blog?.image?.sm ?: "https://cdn2.rsttur.ru/photos/fun-115-360-240-80.jpg?v=1623753485",
             context = context
         )
-        if (bitmap != null) {
+        if (bitmap_ != null) {
+            blogViewModel.setBitmap(bitmap_)
             blogViewModel.setColorPalette(
                 colors = extractColorsFromBitmap(
-                    bitmap = bitmap
+                    bitmap = bitmap_
                 )
             )
         }
     }
     val colorPalette by blogViewModel.colorPalette
 
-    if (colorPalette.isNotEmpty()) {
+    if (colorPalette.isNotEmpty() && bitmap != null) {
         val vibrant by remember { mutableStateOf(colorPalette["vibrant"]!!) }
         val darkVibrant by remember { mutableStateOf(colorPalette["darkVibrant"]!!) }
         val onDarkVibrant by remember { mutableStateOf(colorPalette["onDarkVibrant"]!!) }
@@ -65,18 +71,20 @@ fun BlogScreen(
         systemUiController.setStatusBarColor(Color(parseColor(vibrant)))
 
         Box(
-            modifier = Modifier.background(brush = Brush.linearGradient(
-                    listOf(
-                        Color(parseColor(vibrant)),
-                        Color(parseColor(darkVibrant))
+            modifier = Modifier
+                .fillMaxSize()
+                .background(
+                    brush = Brush.linearGradient(
+                        listOf(
+                            Color(parseColor(vibrant)),
+                            Color(parseColor(darkVibrant))
+                        )
                     )
                 )
-            )
         ) {
             Column(
                 modifier = Modifier
                     .verticalScroll(rememberScrollState())
-                    .fillMaxSize()
                     .padding(12.dp),
                 verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
@@ -85,12 +93,12 @@ fun BlogScreen(
                         .fillMaxWidth()
                         .height(256.dp)
                         .clip(RoundedCornerShape(size = 8.dp)),
-                    painter = rememberAsyncImagePainter(blogViewModel.blog.value?.image?.lg),
+                    bitmap = bitmap,
                     contentScale = ContentScale.Crop,
                     contentDescription = "Blog fun photo"
                 )
                 Text(
-                    text = blogViewModel.blog.value?.date?.dateConvert() ?: "",
+                    text = blogViewModel.blog?.date?.dateConvert() ?: "",
                     fontSize = MaterialTheme.typography.caption.fontSize,
                     overflow = TextOverflow.Ellipsis,
                     fontWeight = FontWeight.Light,
@@ -98,27 +106,25 @@ fun BlogScreen(
                     maxLines = 1
                 )
                 Text(
-                    text = blogViewModel.blog.value?.title ?: "",
+                    text = blogViewModel.blog?.title ?: "",
                     fontSize = MaterialTheme.typography.h6.fontSize,
                     color = Color(parseColor(onDarkVibrant)),
                     fontWeight = FontWeight.Bold,
                 )
                 Text(
-                    text = blogViewModel.blog.value?.subtitle ?: "",
+                    text = blogViewModel.blog?.subtitle ?: "",
                     fontSize = MaterialTheme.typography.body1.fontSize,
                     color = Color(parseColor(onDarkVibrant)),
                     fontWeight = FontWeight.Normal
                 )
                 Text(
-                    text = blogViewModel.blog.value?.content ?: "",
+                    text = blogViewModel.blog?.content ?: "",
                     fontSize = MaterialTheme.typography.body2.fontSize,
                     color = Color(parseColor(onDarkVibrant)),
                     fontWeight = FontWeight.Normal,
                 )
             }
         }
-    } else {
-        AnimatedShimmer { BlogShimmer(brush = it) }
     }
 }
 
@@ -126,7 +132,6 @@ fun BlogScreen(
 fun BlogShimmer(brush: Brush) {
     Column(
         modifier = Modifier
-            .verticalScroll(rememberScrollState())
             .fillMaxSize()
             .padding(12.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp)
@@ -154,7 +159,7 @@ fun BlogShimmer(brush: Brush) {
         )
         Spacer(
             modifier = Modifier
-                .height(2566.dp)
+                .height(500.dp)
                 .clip(RoundedCornerShape(size = 10.dp))
                 .background(brush)
                 .fillMaxWidth()

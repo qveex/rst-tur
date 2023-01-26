@@ -1,9 +1,12 @@
 package ru.qveex.rst_tur.presentation.screens.blog
 
+import android.graphics.Bitmap
 import android.util.Log
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.ui.graphics.ImageBitmap
+import androidx.compose.ui.graphics.asImageBitmap
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -22,7 +25,10 @@ class BlogViewModel @Inject constructor(
     val colorPalette: State<Map<String, String>> = _colorPalette
 
     private val _blog = mutableStateOf<BlogInfo?>(null)
-    val blog get() = _blog
+    val blog get() = _blog.value
+
+    private val _bitmap = mutableStateOf<ImageBitmap?>(null)
+    val bitmap get() = _bitmap.value
 
     fun getBlog(blogId: Int) {
         viewModelScope.launch {
@@ -34,6 +40,10 @@ class BlogViewModel @Inject constructor(
 
             }
         }
+    }
+
+    fun setBitmap(bitmap: Bitmap?) {
+        _bitmap.value = bitmap?.asImageBitmap()
     }
 
     fun setColorPalette(colors: Map<String, String>) {

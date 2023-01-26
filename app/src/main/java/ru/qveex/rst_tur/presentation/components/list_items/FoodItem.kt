@@ -37,10 +37,10 @@ fun FoodItem(food: Fun) {
             contentScale = ContentScale.Crop,
             contentDescription = "Food photo"
         )
-        if (painter.state !is AsyncImagePainter.State.Success) {
+        /*if (painter.state !is AsyncImagePainter.State.Success) {
             Spacer(modifier = Modifier.padding(12.dp))
             AnimatedShimmer { ShimmerFoodItem(brush = it) }
-        } else {
+        } else {*/
             Text(
                 modifier = Modifier.padding(top = 4.dp),
                 text = food.title,
@@ -56,7 +56,7 @@ fun FoodItem(food: Fun) {
                 maxLines = 2,
                 fontWeight = FontWeight.Normal
             )
-        }
+        //}
     }
 }
 

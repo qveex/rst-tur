@@ -1,5 +1,6 @@
 package ru.qveex.rst_tur.presentation.components.lists
 
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.clickable
@@ -33,35 +34,37 @@ fun FunList(funs: List<Fun>) {
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Text(
-                text = "Развлечения",
-                fontSize = MaterialTheme.typography.h5.fontSize
-            )
-            if (!expendedState) {
+            AnimatedVisibility(visible = list.isNotEmpty()) {
                 Text(
-                    modifier = Modifier
-                        .padding(end = 15.dp)
-                        .clickable {
-                            expendedState = !expendedState
-                        },
-                    text = "Все (${funs.size})",
-                    fontSize = MaterialTheme.typography.subtitle1.fontSize,
-                    color = Color.Blue
+                    text = "Развлечения",
+                    fontSize = MaterialTheme.typography.h5.fontSize
                 )
-            }
-        }
-        LazyRow(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.spacedBy(12.dp)
-        ) {
-            items(items = list, key = { it.id }) { f ->
-                Row(
-                    Modifier
-                        .animateItemPlacement(animationSpec = tween(600))
-                        .fillMaxWidth()) {
-                    FunItem(`fun` = f) { list.remove(f) }
+                if (!expendedState) {
+                    Text(
+                        modifier = Modifier
+                            .padding(end = 15.dp)
+                            .clickable {
+                                expendedState = !expendedState
+                            },
+                        text = "Все (${funs.size})",
+                        fontSize = MaterialTheme.typography.subtitle1.fontSize,
+                        color = Color.Blue
+                    )
                 }
+                LazyRow(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(12.dp)
+                ) {
+                    items(items = list, key = { it.id }) { f ->
+                        Row(
+                            Modifier
+                                .animateItemPlacement(animationSpec = tween(600))
+                                .fillMaxWidth()) {
+                            FunItem(`fun` = f) { list.remove(f) }
+                        }
 
+                    }
+                }
             }
         }
     }
