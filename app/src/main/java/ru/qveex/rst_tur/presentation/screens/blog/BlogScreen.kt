@@ -21,6 +21,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
+import dev.jeziellago.compose.markdowntext.MarkdownText
 import kotlinx.coroutines.delay
 import ru.qveex.rst_tur.presentation.components.AnimatedShimmer
 import ru.qveex.rst_tur.presentation.screens.main.SharedViewModel
@@ -117,11 +118,11 @@ fun BlogScreen(
                     color = Color(parseColor(onDarkVibrant)),
                     fontWeight = FontWeight.Normal
                 )
-                Text(
-                    text = blogViewModel.blog?.content ?: "",
+                MarkdownText(
+                    markdown = blogViewModel.blog?.content ?: "",
                     fontSize = MaterialTheme.typography.body2.fontSize,
                     color = Color(parseColor(onDarkVibrant)),
-                    fontWeight = FontWeight.Normal,
+                    style = MaterialTheme.typography.body2
                 )
             }
         }
