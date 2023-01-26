@@ -1,21 +1,30 @@
 package ru.qveex.rst_tur.presentation.screens.home
 
-import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.grid.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import ru.qveex.rst_tur.navigation.Screen
+import ru.qveex.rst_tur.presentation.components.ShimmerList
 import ru.qveex.rst_tur.presentation.components.UpButton
 import ru.qveex.rst_tur.presentation.components.list_items.*
-import ru.qveex.rst_tur.presentation.components.lists.*
+import ru.qveex.rst_tur.presentation.components.lists.FunList
 import ru.qveex.rst_tur.presentation.screens.main.SharedViewModel
 import ru.qveex.rst_tur.presentation.screens.splash.HideUIVisibilityState
+import ru.qveex.rst_tur.utils.AppStatus
+import ru.qveex.rst_tur.utils.list
+import ru.qveex.rst_tur.utils.single
+
+private const val TAG = "HomeScreen"
 
 @Composable
 fun HomeScreen(
@@ -27,9 +36,19 @@ fun HomeScreen(
     HideUIVisibilityState(state = true)
     val systemUiController = rememberSystemUiController()
     val backgroundColor = MaterialTheme.colors.background
+
+    val status = homeViewModel.status
+
     LaunchedEffect(Unit) {
         sharedViewModel.changeScreenTitle(Screen.Home.title)
         systemUiController.setSystemBarsColor(backgroundColor)
+    }
+
+    when(status) {
+        is AppStatus.Idle -> {}
+        is AppStatus.Loading -> { ShimmerList() }
+        is AppStatus.Success -> {}
+        is AppStatus.Error -> {}
     }
 
     val listState = rememberLazyGridState()
@@ -41,82 +60,47 @@ fun HomeScreen(
         horizontalArrangement = Arrangement.spacedBy(12.dp)
     ) {
 
-        single {
-            Text(
-                text = "Питание",
-                fontSize = MaterialTheme.typography.h5.fontSize
-            )
+
+        list(
+            header = "Питание",
+            items = homeViewModel.foods
+        ) {
+            FoodItem(food = it)
         }
 
-        items(items = homeViewModel.foods) { food ->
-            FoodItem(food = food)
-        }
-
-        single {
-            Text(
-                text = "Отели",
-                fontSize = MaterialTheme.typography.h5.fontSize
-            )
-        }
-
-        singleList(items = homeViewModel.rooms) { room ->
+        list(
+            header = "Отели",
+            items = homeViewModel.rooms,
+            isSingleElementInRow = true
+        ) { room ->
             RoomItem(room = room)
         }
 
-        single {
-            FunList(funs = homeViewModel.funs)
-        }
+        single { FunList(funs = homeViewModel.funs) }
 
-        single {
-            Text(
-                text = "Блог",
-                fontSize = MaterialTheme.typography.h5.fontSize
-            )
-        }
-
-        singleList(homeViewModel.blogs) { blog ->
+        list(
+            header = "Блог",
+            items = homeViewModel.blogs,
+            isSingleElementInRow = true
+        ) { blog ->
             BlogItem(blog = blog) { navController.navigate(Screen.Blog.passId(blog.id)) }
         }
 
-        single {
-            Text(
-                text = "Для детей",
-                fontSize = MaterialTheme.typography.h5.fontSize
-            )
-        }
-
-        singleList(homeViewModel.kids) { kid ->
+        list(
+            header = "Для детей",
+            items = homeViewModel.kids,
+            isSingleElementInRow = true
+        ) { kid ->
             KidItem(kid = kid)
         }
 
-        single {
-            Text(
-                text = "Туры",
-                fontSize = MaterialTheme.typography.h5.fontSize
-            )
-        }
-
-        items(items = homeViewModel.tours) { tour ->
+        list(
+            header = "Туры",
+            items = homeViewModel.tours
+        ) { tour ->
             TourItem(tour = tour)
         }
     }
     UpButton(state = listState)
-}
 
-
-private inline fun LazyGridScope.single(crossinline itemContent: @Composable (LazyGridItemScope.() -> Unit)) {
-    item(
-        span = { GridItemSpan(maxCurrentLineSpan) }
-    ) {
-        itemContent()
-    }
-}
-
-private inline fun <T> LazyGridScope.singleList(items: List<T>, crossinline listContent: @Composable ((T) -> Unit)) {
-    items(
-        span = { GridItemSpan(maxCurrentLineSpan) },
-        items = items
-    ) { item ->
-        listContent(item)
-    }
 }
