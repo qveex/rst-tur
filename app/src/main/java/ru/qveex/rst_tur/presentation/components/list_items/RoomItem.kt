@@ -11,10 +11,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.*
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
+import ru.qveex.rst_tur.R
 import ru.qveex.rst_tur.domain.models.*
 import ru.qveex.rst_tur.utils.translateCurrency
 import ru.qveex.rst_tur.utils.translateTypePrice
@@ -32,7 +34,7 @@ fun RoomItem(room: Room) {
                 .clip(RoundedCornerShape(size = 8.dp)),
             painter = painter,
             contentScale = ContentScale.Crop,
-            contentDescription = "Room photo"
+            contentDescription = stringResource(R.string.room_photo_content_description)
         )
         /*if (painter.state !is AsyncImagePainter.State.Success) {
             AnimatedShimmer { ShimmerRoomItem(brush = it) }
@@ -42,7 +44,7 @@ fun RoomItem(room: Room) {
                 verticalArrangement = Arrangement.spacedBy(2.dp)
             ) {
                 Text(
-                    text = "До ${room.countTourist} гостей",
+                    text = stringResource(R.string.to_number_of_guests, room.countTourist),
                     fontSize = MaterialTheme.typography.body2.fontSize,
                     overflow = TextOverflow.Ellipsis,
                     maxLines = 1

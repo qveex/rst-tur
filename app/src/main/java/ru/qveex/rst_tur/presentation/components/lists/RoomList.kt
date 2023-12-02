@@ -7,7 +7,9 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.*
 import androidx.compose.ui.unit.dp
+import ru.qveex.rst_tur.R
 import ru.qveex.rst_tur.domain.models.Room
 import ru.qveex.rst_tur.presentation.components.list_items.RoomItem
 
@@ -21,7 +23,7 @@ fun RoomList(rooms: List<Room>) {
         item {
             Text(
                 modifier = Modifier.padding(vertical = 14.dp),
-                text = "Отели",
+                text = stringResource(R.string.hotels),
                 fontSize = MaterialTheme.typography.h5.fontSize
             )
         }

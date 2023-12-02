@@ -1,15 +1,14 @@
 package ru.qveex.rst_tur.presentation.components.lists
 
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.GridItemSpan
-import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.lazy.grid.*
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.*
 import androidx.compose.ui.unit.dp
+import ru.qveex.rst_tur.R
 import ru.qveex.rst_tur.domain.models.Fun
 import ru.qveex.rst_tur.presentation.components.RoundedButton
 import ru.qveex.rst_tur.presentation.components.list_items.FoodItem
@@ -29,7 +28,7 @@ fun FoodList(foods: List<Fun>) {
             ) {
                 Text(
                     modifier = Modifier.padding(vertical = 14.dp),
-                    text = "Питание",
+                    text = stringResource(R.string.nutrition),
                     fontSize = MaterialTheme.typography.h5.fontSize
                 )
             }
@@ -39,7 +38,7 @@ fun FoodList(foods: List<Fun>) {
         }
         Box(modifier = Modifier.padding(vertical = 20.dp)) {
             RoundedButton(
-                text = "Показать все (${foods.size})",
+                text = stringResource(R.string.show_all_food_items, foods.size),
                 onClick = { }
             )
         }
@@ -56,7 +55,7 @@ fun FoodListFixed(
     Column (modifier = Modifier.padding(15.dp)) {
         Text(
             modifier = Modifier.padding(vertical = 14.dp),
-            text = "Питание",
+            text = stringResource(id = R.string.nutrition),
             fontSize = MaterialTheme.typography.h5.fontSize
         )
         for (i in 0 until size step 2) {
@@ -67,7 +66,7 @@ fun FoodListFixed(
         }
         Box(modifier = Modifier.padding(vertical = 20.dp)) {
             RoundedButton(
-                text = "Показать все (${foods.size})",
+                text = stringResource(R.string.show_all_food_items, foods.size),
                 onClick = { }
             )
         }

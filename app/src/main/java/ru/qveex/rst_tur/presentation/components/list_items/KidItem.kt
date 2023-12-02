@@ -9,10 +9,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.*
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
+import ru.qveex.rst_tur.R
 import ru.qveex.rst_tur.domain.models.Fun
 
 @Composable
@@ -27,7 +29,7 @@ fun KidItem(kid: Fun) {
                 .clip(RoundedCornerShape(size = 8.dp)),
             painter = rememberAsyncImagePainter(kid.image.sm),
             contentScale = ContentScale.Crop,
-            contentDescription = "Kid fun photo"
+            contentDescription = stringResource(R.string.kid_fun_photo_content_description)
         )
         Column(
             modifier = Modifier.fillMaxWidth(),

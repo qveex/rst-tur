@@ -13,7 +13,9 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.res.*
 import androidx.compose.ui.unit.dp
+import ru.qveex.rst_tur.R
 
 @Composable
 fun CircleButton(
@@ -58,7 +60,7 @@ fun CircleButton(
                 Icon(
                     modifier = Modifier.size(MaterialTheme.typography.h4.fontSize.value.dp),
                     imageVector = image,
-                    contentDescription = "icon",
+                    contentDescription = stringResource(R.string.icon_content_description),
                     tint = textColor
                 )
                 Spacer(modifier = Modifier.padding(4.dp))

@@ -16,6 +16,7 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.*
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -23,6 +24,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import dev.jeziellago.compose.markdowntext.MarkdownText
 import kotlinx.coroutines.delay
+import ru.qveex.rst_tur.R
 import ru.qveex.rst_tur.presentation.components.AnimatedShimmer
 import ru.qveex.rst_tur.presentation.screens.main.SharedViewModel
 import ru.qveex.rst_tur.utils.PaletteGenerator.convertImageUrlToBitmap
@@ -96,10 +98,10 @@ fun BlogScreen(
                         .clip(RoundedCornerShape(size = 8.dp)),
                     bitmap = bitmap,
                     contentScale = ContentScale.Crop,
-                    contentDescription = "Blog fun photo"
+                    contentDescription = stringResource(R.string.blog_fun_photo_content_description)
                 )
                 Text(
-                    text = blogViewModel.blog?.date?.dateConvert() ?: "",
+                    text = blogViewModel.blog?.date?.dateConvert() ?: stringResource(R.string.emptyString),
                     fontSize = MaterialTheme.typography.caption.fontSize,
                     overflow = TextOverflow.Ellipsis,
                     fontWeight = FontWeight.Light,
@@ -107,19 +109,19 @@ fun BlogScreen(
                     maxLines = 1
                 )
                 Text(
-                    text = blogViewModel.blog?.title ?: "",
+                    text = blogViewModel.blog?.title ?: stringResource(R.string.emptyString),
                     fontSize = MaterialTheme.typography.h6.fontSize,
                     color = Color(parseColor(onDarkVibrant)),
                     fontWeight = FontWeight.Bold,
                 )
                 Text(
-                    text = blogViewModel.blog?.subtitle ?: "",
+                    text = blogViewModel.blog?.subtitle ?: stringResource(R.string.emptyString),
                     fontSize = MaterialTheme.typography.body1.fontSize,
                     color = Color(parseColor(onDarkVibrant)),
                     fontWeight = FontWeight.Normal
                 )
                 MarkdownText(
-                    markdown = blogViewModel.blog?.content ?: "",
+                    markdown = blogViewModel.blog?.content ?: stringResource(R.string.emptyString),
                     fontSize = MaterialTheme.typography.body2.fontSize,
                     color = Color(parseColor(onDarkVibrant)),
                     style = MaterialTheme.typography.body2

@@ -12,13 +12,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.*
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import coil.compose.AsyncImagePainter
 import coil.compose.rememberAsyncImagePainter
+import ru.qveex.rst_tur.R
 import ru.qveex.rst_tur.domain.models.Fun
-import ru.qveex.rst_tur.presentation.components.AnimatedShimmer
 
 @Composable
 fun FoodItem(food: Fun) {
@@ -35,7 +35,7 @@ fun FoodItem(food: Fun) {
                 .clip(RoundedCornerShape(size = 8.dp)),
             painter = painter,
             contentScale = ContentScale.Crop,
-            contentDescription = "Food photo"
+            contentDescription = stringResource(R.string.food_photo_content_description)
         )
         /*if (painter.state !is AsyncImagePainter.State.Success) {
             Spacer(modifier = Modifier.padding(12.dp))

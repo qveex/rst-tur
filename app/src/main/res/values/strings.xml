@@ -1,3 +1,31 @@
 <resources>
     <string name="app_name">qveex</string>
+    <string name="blog_photo_content_description">Blog photo</string>
+    <string name="food_photo_content_description">Food photo</string>
+    <string name="fun_photo_content_description">Fun photo</string>
+    <string name="kid_fun_photo_content_description">Kid fun photo</string>
+    <string name="room_photo_content_description">Room photo</string>
+    <string name="to_number_of_guests">До %1$s гостей</string>
+    <string name="tour_photo_content_description">Tour photo</string>
+    <string name="tour_duration">%1$s часа</string>
+    <string name="days_and_nights">%1$s дня %2$s ночи</string>
+    <string name="tour_date_and_duration">%1$s / %2$s</string>
+    <string name="blog">Блог</string>
+    <string name="nutrition">Питание</string>
+    <string name="show_all_food_items">Показать все (%1$s)</string>
+    <string name="entertainment">Развлечения</string>
+    <string name="all">Все (%1$s)</string>
+    <string name="for_children">Для детей</string>
+    <string name="hotels">Отели</string>
+    <string name="tours">Туры</string>
+    <string name="navigation_icon_content_description">Navigation Icon</string>
+    <string name="icon_content_description">icon</string>
+    <string name="back_icon_content_description">Back icon</string>
+    <string name="theme_icon_content_description">Theme Icon</string>
+    <string name="up_button_content_description">Up Button</string>
+    <string name="blog_fun_photo_content_description">Blog fun photo</string>
+    <string name="emptyString" />
+    <string name="booking">Booking</string>
+    <string name="picked_image_content_description">Picked Image</string>
+    <string name="click">click</string>
 </resources>

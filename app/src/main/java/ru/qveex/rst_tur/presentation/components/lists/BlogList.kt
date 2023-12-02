@@ -10,8 +10,10 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.*
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import ru.qveex.rst_tur.*
 import ru.qveex.rst_tur.domain.models.Blog
 import ru.qveex.rst_tur.navigation.Screen
 import ru.qveex.rst_tur.presentation.components.list_items.BlogItem
@@ -29,7 +31,7 @@ fun BlogList(
         item {
             Text(
                 modifier = Modifier.padding(vertical = 14.dp),
-                text = "Блог",
+                text = stringResource(R.string.blog),
                 fontSize = MaterialTheme.typography.h5.fontSize
             )
         }

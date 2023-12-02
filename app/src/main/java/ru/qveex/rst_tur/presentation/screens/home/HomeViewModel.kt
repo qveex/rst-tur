@@ -1,13 +1,16 @@
 package ru.qveex.rst_tur.presentation.screens.home
 
+import android.app.Application
 import android.util.Log
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import ru.qveex.rst_tur.*
 import ru.qveex.rst_tur.domain.interactors.Interactors
 import ru.qveex.rst_tur.domain.models.*
 import ru.qveex.rst_tur.utils.AppStatus
@@ -15,8 +18,9 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    interactors: Interactors
-) : ViewModel() {
+    interactors: Interactors,
+    private val application: Application
+) : AndroidViewModel(application) {
 
     companion object {
         private const val TAG = "HomeViewModel"
@@ -74,11 +78,11 @@ class HomeViewModel @Inject constructor(
                 if (response.success) {
                     Log.i(TAG, "mainObjects = ${response.data}")
                     _buttons.addAll(response.data.buttons)
-                    AppStatus.Success("")
+                    AppStatus.Success(application.applicationContext.getString(R.string.emptyString))
                 } else {
-                    AppStatus.Error("")
+                    AppStatus.Error(application.applicationContext.getString(R.string.emptyString))
                 }
-            } catch (e: Exception) { AppStatus.Error("") }
+            } catch (e: Exception) { AppStatus.Error(application.applicationContext.getString(R.string.emptyString)) }
 
         }
     }
@@ -92,11 +96,11 @@ class HomeViewModel @Inject constructor(
                 if (response.success) {
                     Log.i(TAG, "foods = ${response.data}")
                     _foods.addAll(response.data.subList(0, 6))
-                    AppStatus.Success("")
+                    AppStatus.Success(application.applicationContext.getString(R.string.emptyString))
                 } else {
-                    AppStatus.Error("")
+                    AppStatus.Error(application.applicationContext.getString(R.string.emptyString))
                 }
-            } catch (e: Exception) { AppStatus.Error("") }
+            } catch (e: Exception) { AppStatus.Error(application.applicationContext.getString(R.string.emptyString)) }
         }
     }
 
@@ -108,11 +112,11 @@ class HomeViewModel @Inject constructor(
                 val response = interactor.getTours(id = 117)
                 if (response.success) {
                     _tours.addAll(response.data.subList(0, 6))
-                    AppStatus.Success("")
+                    AppStatus.Success(application.applicationContext.getString(R.string.emptyString))
                 } else {
-                    AppStatus.Error("")
+                    AppStatus.Error(application.applicationContext.getString(R.string.emptyString))
                 }
-            } catch (e: Exception) { AppStatus.Error("") }
+            } catch (e: Exception) { AppStatus.Error(application.applicationContext.getString(R.string.emptyString)) }
 
         }
     }
@@ -126,11 +130,11 @@ class HomeViewModel @Inject constructor(
                 if (response.success) {
                     Log.i(TAG, "rooms = ${response.data}")
                     _rooms.addAll(response.data.subList(0, 6))
-                    AppStatus.Success("")
+                    AppStatus.Success(application.applicationContext.getString(R.string.emptyString))
                 } else {
-                    AppStatus.Error("")
+                    AppStatus.Error(application.applicationContext.getString(R.string.emptyString))
                 }
-            } catch (e: Exception) { AppStatus.Error("") }
+            } catch (e: Exception) { AppStatus.Error(application.applicationContext.getString(R.string.emptyString)) }
 
         }
     }
@@ -143,11 +147,11 @@ class HomeViewModel @Inject constructor(
                 val response = interactor.getFuns(id = 117, type = "place")
                 if (response.success) {
                     _places.addAll(response.data.subList(0, 6))
-                    AppStatus.Success("")
+                    AppStatus.Success(application.applicationContext.getString(R.string.emptyString))
                 } else {
-                    AppStatus.Error("")
+                    AppStatus.Error(application.applicationContext.getString(R.string.emptyString))
                 }
-            } catch (e: Exception) { AppStatus.Error("") }
+            } catch (e: Exception) { AppStatus.Error(application.applicationContext.getString(R.string.emptyString)) }
 
         }
     }
@@ -161,11 +165,11 @@ class HomeViewModel @Inject constructor(
                 if (response.success) {
                     Log.i(TAG, "funs = ${response.data}")
                     _funs.addAll(response.data.subList(0, 6))
-                    AppStatus.Success("")
+                    AppStatus.Success(application.applicationContext.getString(R.string.emptyString))
                 } else {
-                    AppStatus.Error("")
+                    AppStatus.Error(application.applicationContext.getString(R.string.emptyString))
                 }
-            } catch (e: Exception) { AppStatus.Error("") }
+            } catch (e: Exception) { AppStatus.Error(application.applicationContext.getString(R.string.emptyString)) }
 
         }
     }
@@ -179,11 +183,11 @@ class HomeViewModel @Inject constructor(
                 if (response.success) {
                     Log.i(TAG, "kids = ${response.data}")
                     _kids.addAll(response.data.subList(0, 2))
-                    AppStatus.Success("")
+                    AppStatus.Success(application.applicationContext.getString(R.string.emptyString))
                 } else {
-                    AppStatus.Error("")
+                    AppStatus.Error(application.applicationContext.getString(R.string.emptyString))
                 }
-            } catch (e: Exception) { AppStatus.Error("") }
+            } catch (e: Exception) { AppStatus.Error(application.applicationContext.getString(R.string.emptyString)) }
 
         }
     }
@@ -197,11 +201,11 @@ class HomeViewModel @Inject constructor(
                 if (response.success) {
                     Log.i(TAG, "blogs = ${response.data}")
                     _blogs.addAll(response.data.subList(0, 6))
-                    AppStatus.Success("")
+                    AppStatus.Success(application.applicationContext.getString(R.string.emptyString))
                 } else {
-                    AppStatus.Error("")
+                    AppStatus.Error(application.applicationContext.getString(R.string.emptyString))
                 }
-            } catch (e: Exception) { AppStatus.Error("") }
+            } catch (e: Exception) { AppStatus.Error(application.applicationContext.getString(R.string.emptyString)) }
 
         }
     }

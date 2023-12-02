@@ -16,8 +16,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.*
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
+import ru.qveex.rst_tur.*
 
 @Composable
 fun UpButton(state: LazyGridState) {
@@ -43,7 +45,7 @@ fun UpButton(state: LazyGridState) {
             ) {
                 Icon(
                     imageVector = Icons.Outlined.ArrowUpward,
-                    contentDescription = "Up Button",
+                    contentDescription = stringResource(R.string.up_button_content_description),
                     tint = MaterialTheme.colors.onBackground
                 )
             }

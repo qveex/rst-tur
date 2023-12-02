@@ -7,7 +7,9 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.*
 import androidx.compose.ui.unit.dp
+import ru.qveex.rst_tur.R
 import ru.qveex.rst_tur.domain.models.Fun
 import ru.qveex.rst_tur.presentation.components.list_items.KidItem
 
@@ -21,7 +23,7 @@ fun KidList(kids: List<Fun>) {
         item {
             Text(
                 modifier = Modifier.padding(vertical = 14.dp),
-                text = "Для детей",
+                text = stringResource(R.string.for_children),
                 fontSize = MaterialTheme.typography.h5.fontSize
             )
         }

@@ -12,7 +12,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.*
 import androidx.hilt.navigation.compose.hiltViewModel
+import ru.qveex.rst_tur.R
 import ru.qveex.rst_tur.navigation.Screen
 import ru.qveex.rst_tur.presentation.components.CircleButton
 import ru.qveex.rst_tur.presentation.screens.main.SharedViewModel
@@ -32,7 +34,7 @@ fun ProfileScreen(
         contentAlignment = Alignment.Center,
     ) {
         CircleButton(
-            text = "click",
+            text = stringResource(R.string.click),
             onClicked = {
                 photoPicker.launch(
                     PickVisualMediaRequest(

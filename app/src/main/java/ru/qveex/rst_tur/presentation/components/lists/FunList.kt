@@ -14,7 +14,9 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.*
 import androidx.compose.ui.unit.dp
+import ru.qveex.rst_tur.R
 import ru.qveex.rst_tur.domain.models.Fun
 import ru.qveex.rst_tur.presentation.components.list_items.FunItem
 
@@ -36,7 +38,7 @@ fun FunList(funs: List<Fun>) {
         ) {
             AnimatedVisibility(visible = list.isNotEmpty()) {
                 Text(
-                    text = "Развлечения",
+                    text = stringResource(R.string.entertainment),
                     fontSize = MaterialTheme.typography.h5.fontSize
                 )
                 if (!expendedState) {
@@ -46,7 +48,7 @@ fun FunList(funs: List<Fun>) {
                             .clickable {
                                 expendedState = !expendedState
                             },
-                        text = "Все (${funs.size})",
+                        text = stringResource(R.string.all, funs.size),
                         fontSize = MaterialTheme.typography.subtitle1.fontSize,
                         color = Color.Blue
                     )

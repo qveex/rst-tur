@@ -10,12 +10,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.*
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
+import ru.qveex.rst_tur.R
 import ru.qveex.rst_tur.domain.models.Tour
 
 @Composable
@@ -34,16 +36,16 @@ fun TourItem(tour: Tour) {
                 .clip(RoundedCornerShape(size = 8.dp)),
             painter = painter,
             contentScale = ContentScale.Crop,
-            contentDescription = "Tour photo"
+            contentDescription = stringResource(R.string.tour_photo_content_description)
         )
         val duration =
             if (tour.duration.hour != null)
-                "${tour.duration.hour} часа"
+                stringResource(R.string.tour_duration, tour.duration.hour)
             else
-                "${tour.duration.day} дня ${tour.duration.night} ночи"
+                stringResource(R.string.days_and_nights, tour.duration.day.toString(), tour.duration.night.toString())
 
         Text(
-            text = "${tour.date.date} / $duration" ,
+            text = stringResource(R.string.tour_date_and_duration, tour.date.date.toString(), duration) ,
             fontSize = MaterialTheme.typography.subtitle2.fontSize,
             overflow = TextOverflow.Ellipsis,
             maxLines = 1,

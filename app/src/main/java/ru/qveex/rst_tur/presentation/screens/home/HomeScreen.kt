@@ -9,10 +9,13 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.*
+import androidx.compose.ui.res.*
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
+import ru.qveex.rst_tur.*
 import ru.qveex.rst_tur.navigation.Screen
 import ru.qveex.rst_tur.presentation.components.ShimmerList
 import ru.qveex.rst_tur.presentation.components.UpButton
@@ -36,6 +39,7 @@ fun HomeScreen(
     HideUIVisibilityState(state = true)
     val systemUiController = rememberSystemUiController()
     val backgroundColor = MaterialTheme.colors.background
+    val context = LocalContext.current
 
     val status = homeViewModel.status
 
@@ -62,14 +66,14 @@ fun HomeScreen(
 
 
         list(
-            header = "Питание",
+            header = context.getString(R.string.nutrition),
             items = homeViewModel.foods
         ) {
             FoodItem(food = it)
         }
 
         list(
-            header = "Отели",
+            header = context.getString(R.string.hotels),
             items = homeViewModel.rooms,
             isSingleElementInRow = true
         ) { room ->
@@ -79,7 +83,7 @@ fun HomeScreen(
         single { FunList(funs = homeViewModel.funs) }
 
         list(
-            header = "Блог",
+            header = context.getString(R.string.blog),
             items = homeViewModel.blogs,
             isSingleElementInRow = true
         ) { blog ->
@@ -87,7 +91,7 @@ fun HomeScreen(
         }
 
         list(
-            header = "Для детей",
+            header = context.getString(R.string.for_children),
             items = homeViewModel.kids,
             isSingleElementInRow = true
         ) { kid ->
@@ -95,7 +99,7 @@ fun HomeScreen(
         }
 
         list(
-            header = "Туры",
+            header = context.getString(R.string.tours),
             items = homeViewModel.tours
         ) { tour ->
             TourItem(tour = tour)

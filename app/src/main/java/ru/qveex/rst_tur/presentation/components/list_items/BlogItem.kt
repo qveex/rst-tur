@@ -10,10 +10,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.*
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
+import ru.qveex.rst_tur.R
 import ru.qveex.rst_tur.domain.models.Blog
 
 @Composable
@@ -33,7 +35,7 @@ fun BlogItem(
                 .clip(RoundedCornerShape(size = 8.dp)),
             painter = rememberAsyncImagePainter(blog.image.sm),
             contentScale = ContentScale.Crop,
-            contentDescription = "Blog photo"
+            contentDescription = stringResource(R.string.blog_photo_content_description)
         )
         Column(
             modifier = Modifier.fillMaxWidth(),

@@ -9,7 +9,9 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.*
 import androidx.hilt.navigation.compose.hiltViewModel
+import ru.qveex.rst_tur.*
 import ru.qveex.rst_tur.navigation.Screen
 import ru.qveex.rst_tur.presentation.screens.main.SharedViewModel
 
@@ -25,6 +27,6 @@ fun BookingScreen(
             .background(color = Color.Blue),
         contentAlignment = Alignment.Center,
     ) {
-        Text(text = "Booking")
+        Text(text = stringResource(R.string.booking))
     }
 }

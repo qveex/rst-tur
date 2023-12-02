@@ -11,9 +11,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.res.*
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
+import ru.qveex.rst_tur.R
 import ru.qveex.rst_tur.domain.models.Fun
 
 @Composable
@@ -33,7 +35,7 @@ fun FunItem(`fun`: Fun, onClick: () -> Unit) {
                 .clip(RoundedCornerShape(size = 8.dp)),
             painter = rememberAsyncImagePainter(`fun`.image.sm),
             contentScale = ContentScale.Crop,
-            contentDescription = "Fun photo"
+            contentDescription = stringResource(R.string.fun_photo_content_description)
         )
         Text(
             text = `fun`.title,

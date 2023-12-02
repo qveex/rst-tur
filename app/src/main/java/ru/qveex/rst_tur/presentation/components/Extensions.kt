@@ -30,7 +30,9 @@ inline fun <T> LazyGridScope.list(
             )
         }
     items(
-        span = if (isSingleElementInRow) {{ GridItemSpan(maxCurrentLineSpan) }} else null,
+        span = if (isSingleElementInRow) {
+            { GridItemSpan(maxCurrentLineSpan) }
+        } else null,
         items = items
     ) { item ->
         listContent(item)

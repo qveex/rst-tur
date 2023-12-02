@@ -11,9 +11,11 @@ import androidx.compose.material.icons.outlined.DarkMode
 import androidx.compose.material.icons.outlined.LightMode
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.*
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import ru.qveex.rst_tur.R
 import ru.qveex.rst_tur.utils.Constants
 
 @Composable
@@ -31,7 +33,7 @@ fun TopBarMain(
                 ) {
                     Icon(
                         imageVector = Icons.Outlined.ArrowBack,
-                        contentDescription = "Back icon"
+                        contentDescription = stringResource(R.string.back_icon_content_description)
                     )
                 }
             }
@@ -72,7 +74,7 @@ fun SwitchThemeButton(
             ) {
                 Icon(
                     imageVector = if (it) Icons.Outlined.DarkMode else Icons.Outlined.LightMode,
-                    contentDescription = "Theme Icon",
+                    contentDescription = stringResource(R.string.theme_icon_content_description),
                     tint = MaterialTheme.colors.onBackground,
                 )
             }
