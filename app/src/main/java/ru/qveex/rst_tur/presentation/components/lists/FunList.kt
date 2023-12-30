@@ -48,7 +48,7 @@ fun FunList(funs: List<Fun>) {
                             .clickable {
                                 expendedState = !expendedState
                             },
-                        text = stringResource(R.string.all, funs.size),
+                        text = stringResource(R.string.show_all, funs.size),
                         fontSize = MaterialTheme.typography.subtitle1.fontSize,
                         color = Color.Blue
                     )

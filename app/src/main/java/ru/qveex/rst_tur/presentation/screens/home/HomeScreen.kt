@@ -35,26 +35,29 @@ fun HomeScreen(
     sharedViewModel: SharedViewModel,
     homeViewModel: HomeViewModel = hiltViewModel()
 ) {
-
+    
     HideUIVisibilityState(state = true)
     val systemUiController = rememberSystemUiController()
     val backgroundColor = MaterialTheme.colors.background
     val context = LocalContext.current
-
+    
     val status = homeViewModel.status
-
+    
     LaunchedEffect(Unit) {
-        sharedViewModel.changeScreenTitle(Screen.Home.title)
+        sharedViewModel.changeScreenTitle(context.getString(Screen.Home.title))
         systemUiController.setSystemBarsColor(backgroundColor)
     }
-
-    when(status) {
+    
+    when (status) {
         is AppStatus.Idle -> {}
-        is AppStatus.Loading -> { ShimmerList() }
+        is AppStatus.Loading -> {
+            ShimmerList()
+        }
+        
         is AppStatus.Success -> {}
         is AppStatus.Error -> {}
     }
-
+    
     val listState = rememberLazyGridState()
     LazyVerticalGrid(
         modifier = Modifier.padding(top = 14.dp, start = 14.dp, end = 14.dp),
@@ -63,15 +66,14 @@ fun HomeScreen(
         verticalArrangement = Arrangement.spacedBy(12.dp),
         horizontalArrangement = Arrangement.spacedBy(12.dp)
     ) {
-
-
+        
         list(
             header = context.getString(R.string.nutrition),
             items = homeViewModel.foods
         ) {
             FoodItem(food = it)
         }
-
+        
         list(
             header = context.getString(R.string.hotels),
             items = homeViewModel.rooms,
@@ -79,9 +81,9 @@ fun HomeScreen(
         ) { room ->
             RoomItem(room = room)
         }
-
+        
         single { FunList(funs = homeViewModel.funs) }
-
+        
         list(
             header = context.getString(R.string.blog),
             items = homeViewModel.blogs,
@@ -89,7 +91,7 @@ fun HomeScreen(
         ) { blog ->
             BlogItem(blog = blog) { navController.navigate(Screen.Blog.passId(blog.id)) }
         }
-
+        
         list(
             header = context.getString(R.string.for_children),
             items = homeViewModel.kids,
@@ -97,7 +99,7 @@ fun HomeScreen(
         ) { kid ->
             KidItem(kid = kid)
         }
-
+        
         list(
             header = context.getString(R.string.tours),
             items = homeViewModel.tours
@@ -106,5 +108,4 @@ fun HomeScreen(
         }
     }
     UpButton(state = listState)
-
 }

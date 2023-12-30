@@ -9,6 +9,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.*
 import androidx.compose.ui.res.*
 import androidx.hilt.navigation.compose.hiltViewModel
 import ru.qveex.rst_tur.*
@@ -20,7 +21,9 @@ fun BookingScreen(
     sharedViewModel: SharedViewModel,
     bookingViewModel: BookingViewModel = hiltViewModel()
 ) {
-    LaunchedEffect(Unit) { sharedViewModel.changeScreenTitle(Screen.Booking.title) }
+    val context = LocalContext.current
+    
+    LaunchedEffect(Unit) { sharedViewModel.changeScreenTitle(context.getString(Screen.Booking.title)) }
     Box(
         modifier = Modifier
             .fillMaxSize()

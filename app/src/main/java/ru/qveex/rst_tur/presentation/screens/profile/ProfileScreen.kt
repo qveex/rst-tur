@@ -12,6 +12,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.*
 import androidx.compose.ui.res.*
 import androidx.hilt.navigation.compose.hiltViewModel
 import ru.qveex.rst_tur.R
@@ -27,8 +28,9 @@ fun ProfileScreen(
     val photoPicker = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.PickVisualMedia()
     ) { sharedViewModel.setSharedImage(it) }
-
-    LaunchedEffect(Unit) { sharedViewModel.changeScreenTitle(Screen.Profile.title) }
+    val context = LocalContext.current
+    
+    LaunchedEffect(Unit) { sharedViewModel.changeScreenTitle(context.getString(Screen.Profile.title)) }
     Box(
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center,

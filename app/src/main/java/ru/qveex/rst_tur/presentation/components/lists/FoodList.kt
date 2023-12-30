@@ -38,7 +38,7 @@ fun FoodList(foods: List<Fun>) {
         }
         Box(modifier = Modifier.padding(vertical = 20.dp)) {
             RoundedButton(
-                text = stringResource(R.string.show_all_food_items, foods.size),
+                text = stringResource(R.string.show_all, foods.size),
                 onClick = { }
             )
         }
@@ -66,7 +66,7 @@ fun FoodListFixed(
         }
         Box(modifier = Modifier.padding(vertical = 20.dp)) {
             RoundedButton(
-                text = stringResource(R.string.show_all_food_items, foods.size),
+                text = stringResource(R.string.show_all, foods.size),
                 onClick = { }
             )
         }

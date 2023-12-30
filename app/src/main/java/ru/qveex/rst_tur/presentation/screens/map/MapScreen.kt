@@ -9,6 +9,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.*
 import androidx.hilt.navigation.compose.hiltViewModel
 import ru.qveex.rst_tur.navigation.Screen
 import ru.qveex.rst_tur.presentation.screens.main.SharedViewModel
@@ -18,7 +19,9 @@ fun MapScreen(
     sharedViewModel: SharedViewModel,
     mapViewModel: MapViewModel = hiltViewModel()
 ) {
-    LaunchedEffect(Unit) { sharedViewModel.changeScreenTitle(Screen.Map.title) }
+    val context = LocalContext.current
+    
+    LaunchedEffect(Unit) { sharedViewModel.changeScreenTitle(context.getString(Screen.Map.title)) }
     Box(
         modifier = Modifier
             .fillMaxSize()

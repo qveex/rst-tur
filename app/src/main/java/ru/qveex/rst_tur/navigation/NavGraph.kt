@@ -3,6 +3,8 @@ package ru.qveex.rst_tur.navigation
 import androidx.compose.animation.*
 import androidx.compose.animation.core.tween
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.platform.*
+import androidx.compose.ui.res.*
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.navArgument
@@ -27,54 +29,62 @@ fun SetupNavGraph(
     navController: NavHostController,
     sharedViewModel: SharedViewModel,
 ) {
+    val context = LocalContext.current
+    
     AnimatedNavHost(
         navController = navController,
-        startDestination = Screen.Splash.route
+        startDestination = stringResource(id = Screen.Splash.route)
     ) {
         composable(
-            route = Screen.Splash.route,
+            route = context.getString(Screen.Splash.route),
             enterTransition = { fadeIn(animationSpec = tween(SCREEN_TRANSIT_DURATION_MILLIS * 2)) },
             exitTransition = { fadeOut(animationSpec = tween(SCREEN_TRANSIT_DURATION_MILLIS * 2)) },
         ) {
             SplashScreen(navController = navController)
         }
         composable(
-            route = Screen.Home.route,
-            enterTransition = { if (navController.currentDestination!!.route!! != Screen.Splash.route) { fadeIn(animationSpec = tween(SCREEN_TRANSIT_DURATION_MILLIS)) } else { enterAnim() } } ,
+            route = context.getString(Screen.Home.route),
+            enterTransition = {
+                if (navController.currentDestination!!.route!! != context.getString(Screen.Splash.route)) {
+                    fadeIn(animationSpec = tween(SCREEN_TRANSIT_DURATION_MILLIS))
+                } else {
+                    enterAnim()
+                }
+            },
             exitTransition = { exitAnim() },
         ) {
             HomeScreen(sharedViewModel = sharedViewModel, navController = navController)
         }
         composable(
-            route = Screen.Map.route,
+            route = context.getString(Screen.Map.route),
             enterTransition = { enterAnim() },
             exitTransition = { exitAnim() },
         ) {
             MapScreen(sharedViewModel = sharedViewModel)
         }
         composable(
-            route = Screen.Booking.route,
+            route = context.getString(Screen.Booking.route),
             enterTransition = { enterAnim() },
             exitTransition = { exitAnim() }
         ) {
             BookingScreen(sharedViewModel = sharedViewModel)
         }
         composable(
-            route = Screen.Chats.route,
+            route = context.getString(Screen.Chats.route),
             enterTransition = { enterAnim() },
             exitTransition = { exitAnim() }
         ) {
             ChatsScreen(sharedViewModel = sharedViewModel)
         }
         composable(
-            route = Screen.Profile.route,
+            route = context.getString(Screen.Profile.route),
             enterTransition = { enterAnim() },
             exitTransition = { exitAnim() }
         ) {
             ProfileScreen(sharedViewModel = sharedViewModel)
         }
         composable(
-            route = Screen.Blog.route,
+            route = context.getString(Screen.Blog.route),
             enterTransition = { enterAnim() },
             exitTransition = { exitAnim() },
             arguments = listOf(navArgument(BLOG_ARGUMENT_KEY) { type = NavType.IntType })
@@ -84,5 +94,8 @@ fun SetupNavGraph(
     }
 }
 
-fun enterAnim() = slideInHorizontally(animationSpec = tween(SCREEN_TRANSIT_DURATION_MILLIS), initialOffsetX = { INITIAL_OFFSET_X })
-fun exitAnim() = slideOutHorizontally(animationSpec = tween(SCREEN_TRANSIT_DURATION_MILLIS), targetOffsetX = { TARGET_OFFSET_X })
+fun enterAnim() =
+    slideInHorizontally(animationSpec = tween(SCREEN_TRANSIT_DURATION_MILLIS), initialOffsetX = { INITIAL_OFFSET_X })
+
+fun exitAnim() =
+    slideOutHorizontally(animationSpec = tween(SCREEN_TRANSIT_DURATION_MILLIS), targetOffsetX = { TARGET_OFFSET_X })

@@ -25,7 +25,9 @@ fun ChatsScreen(
     sharedViewModel: SharedViewModel,
     chatsViewModel: ChatsViewModel = hiltViewModel()
 ) {
-    LaunchedEffect(Unit) { sharedViewModel.changeScreenTitle(Screen.Chats.title) }
+    val context = LocalContext.current
+    
+    LaunchedEffect(Unit) { sharedViewModel.changeScreenTitle(context.getString(Screen.Chats.title)) }
     Box(
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center,

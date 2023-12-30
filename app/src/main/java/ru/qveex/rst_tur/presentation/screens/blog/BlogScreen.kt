@@ -101,7 +101,7 @@ fun BlogScreen(
                     contentDescription = stringResource(R.string.blog_fun_photo_content_description)
                 )
                 Text(
-                    text = blogViewModel.blog?.date?.dateConvert() ?: stringResource(R.string.emptyString),
+                    text = blogViewModel.blog?.date?.dateConvert() ?: "",
                     fontSize = MaterialTheme.typography.caption.fontSize,
                     overflow = TextOverflow.Ellipsis,
                     fontWeight = FontWeight.Light,
@@ -109,19 +109,19 @@ fun BlogScreen(
                     maxLines = 1
                 )
                 Text(
-                    text = blogViewModel.blog?.title ?: stringResource(R.string.emptyString),
+                    text = blogViewModel.blog?.title ?: "",
                     fontSize = MaterialTheme.typography.h6.fontSize,
                     color = Color(parseColor(onDarkVibrant)),
                     fontWeight = FontWeight.Bold,
                 )
                 Text(
-                    text = blogViewModel.blog?.subtitle ?: stringResource(R.string.emptyString),
+                    text = blogViewModel.blog?.subtitle ?: "",
                     fontSize = MaterialTheme.typography.body1.fontSize,
                     color = Color(parseColor(onDarkVibrant)),
                     fontWeight = FontWeight.Normal
                 )
                 MarkdownText(
-                    markdown = blogViewModel.blog?.content ?: stringResource(R.string.emptyString),
+                    markdown = blogViewModel.blog?.content ?: "",
                     fontSize = MaterialTheme.typography.body2.fontSize,
                     color = Color(parseColor(onDarkVibrant)),
                     style = MaterialTheme.typography.body2

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">qveex</string>
+    <string name="blog_photo_content_description">Photo from blog</string>
+    <string name="food_photo_content_description">Food photo</string>
+    <string name="fun_photo_content_description">Funny photo</string>
+    <string name="kid_fun_photo_content_description">Children\'s funny photo</string>
+    <string name="room_photo_content_description">Photo of the room</string>
+    <string name="to_number_of_guests">Up to %1$s guests</string>
+    <string name="tour_photo_content_description">Photos of the tour</string>
+    <string name="tour_duration">%1$s hours</string>
+    <string name="days_and_nights">%1$s of day %2$s of night</string>
+    <string name="blog">Blog</string>
+    <string name="nutrition">Nutrition</string>
+    <string name="show_all">Show all (%1$s)</string>
+    <string name="entertainment">Entertainment</string>
+    <string name="for_children">For children</string>
+    <string name="hotels">Hotels</string>
+    <string name="tours">Tours</string>
+    <string name="navigation_icon_content_description">Navigation icon</string>
+    <string name="icon_content_description">Icon</string>
+    <string name="back_icon_content_description">Back icon</string>
+    <string name="theme_icon_content_description">Theme icon</string>
+    <string name="up_button_content_description">Up button</string>
+    <string name="blog_fun_photo_content_description">Blog funny photo</string>
+    <string name="booking">Reservation</string>
+    <string name="picked_image_content_description">Selected image</string>
+    <string name="click">Click</string>
+    <string name="home">Home</string>
+    <string name="map">Map</string>
+    <string name="chats">Chats</string>
+    <string name="profile">Profile</string>
+    <string name="splash">Splash</string>
+</resources>

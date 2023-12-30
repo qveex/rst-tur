@@ -1,31 +1,41 @@
 <resources>
     <string name="app_name">qveex</string>
-    <string name="blog_photo_content_description">Blog photo</string>
-    <string name="food_photo_content_description">Food photo</string>
-    <string name="fun_photo_content_description">Fun photo</string>
-    <string name="kid_fun_photo_content_description">Kid fun photo</string>
-    <string name="room_photo_content_description">Room photo</string>
+    <string name="blog_photo_content_description">" Фото из блога"</string>
+    <string name="food_photo_content_description">Еда фото</string>
+    <string name="fun_photo_content_description">Веселое фото</string>
+    <string name="kid_fun_photo_content_description">Детское веселое фото</string>
+    <string name="room_photo_content_description">Фото номера</string>
     <string name="to_number_of_guests">До %1$s гостей</string>
-    <string name="tour_photo_content_description">Tour photo</string>
+    <string name="tour_photo_content_description">Фото тура</string>
     <string name="tour_duration">%1$s часа</string>
     <string name="days_and_nights">%1$s дня %2$s ночи</string>
-    <string name="tour_date_and_duration">%1$s / %2$s</string>
+    <string name="tour_date_and_duration" translatable="false">%1$s / %2$s</string>
     <string name="blog">Блог</string>
     <string name="nutrition">Питание</string>
-    <string name="show_all_food_items">Показать все (%1$s)</string>
+    <string name="show_all">Показать все (%1$s)</string>
     <string name="entertainment">Развлечения</string>
-    <string name="all">Все (%1$s)</string>
     <string name="for_children">Для детей</string>
     <string name="hotels">Отели</string>
     <string name="tours">Туры</string>
-    <string name="navigation_icon_content_description">Navigation Icon</string>
-    <string name="icon_content_description">icon</string>
-    <string name="back_icon_content_description">Back icon</string>
-    <string name="theme_icon_content_description">Theme Icon</string>
-    <string name="up_button_content_description">Up Button</string>
-    <string name="blog_fun_photo_content_description">Blog fun photo</string>
-    <string name="emptyString" />
-    <string name="booking">Booking</string>
-    <string name="picked_image_content_description">Picked Image</string>
-    <string name="click">click</string>
+    <string name="navigation_icon_content_description">Значок навигации</string>
+    <string name="icon_content_description">икона</string>
+    <string name="back_icon_content_description">Значок спины</string>
+    <string name="theme_icon_content_description">Значок темы</string>
+    <string name="up_button_content_description">Кнопка «Вверх»</string>
+    <string name="blog_fun_photo_content_description">Блог забавное фото</string>
+    <string name="booking">Броньåç</string>
+    <string name="booking_route" translatable="false">booking</string>
+    <string name="picked_image_content_description">Выбранное изображение</string>
+    <string name="click">щелкнуть</string>
+    <string name="home">Главная</string>
+    <string name="home_route" translatable="false">home</string>
+    <string name="map">Карта</string>
+    <string name="map_route" translatable="false">map</string>
+    <string name="chats">Чаты</string>
+    <string name="chats_route" translatable="false">chats</string>
+    <string name="profile">Профиль</string>
+    <string name="profile_route" translatable="false">profile</string>
+    <string name="splash">Всплеск</string>
+    <string name="splash_route" translatable="false">splash</string>
+    <string name="blog_route_argument_key" translatable="false">blog/{%1$s}</string>
 </resources>

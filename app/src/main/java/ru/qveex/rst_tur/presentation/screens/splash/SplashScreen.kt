@@ -16,6 +16,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.rotate
+import androidx.compose.ui.platform.*
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
@@ -33,6 +34,7 @@ fun SplashScreen(navController: NavController) {
         animationSpec = tween(durationMillis = 1000)
     )
     val degrees = remember { Animatable(0f) }
+    val context = LocalContext.current
     
     LaunchedEffect(true) {
         startAnimation = true
@@ -46,7 +48,7 @@ fun SplashScreen(navController: NavController) {
         startAnimation = false
         delay(1000)
         navController.popBackStack()
-        navController.navigate(Screen.Home.route)
+        navController.navigate(context.getString(Screen.Home.route))
     }
     Splash(alpha = alphaAnim, degrees = degrees.value)
 }
